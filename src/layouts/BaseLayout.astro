@@ -15,7 +15,7 @@ const {
   jsonLd,
 } = Astro.props;
 
-const siteURL = Astro.site?.toString().replace(/\/$/, '') ?? 'https://scientific-calculator-online.pages.dev';
+const siteURL = Astro.site?.toString().replace(/\/$/, '') ?? 'https://scientificcalc.org';
 const canonical = canonicalURL ?? Astro.url.href;
 const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${siteURL}${ogImage}`;
 

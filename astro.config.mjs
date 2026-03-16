@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://scientific-calculator-online.pages.dev',
+  site: 'https://scientificcalc.org',
   output: 'static',
   integrations: [react(), sitemap()],
   vite: {
