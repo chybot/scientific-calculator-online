@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Privacy Policy — Scientific Calculator Online"
+  description="Privacy policy for Scientific Calculator Online."
+>
+  <div class="max-w-3xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold mb-6">Privacy Policy</h1>
+    <div class="text-text-muted space-y-4 text-sm">
+      <p><em>Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</em></p>
+
+      <h2 class="text-lg font-semibold text-text pt-2">Information We Collect</h2>
+      <p>
+        Scientific Calculator Online does not collect personal information. All calculations
+        are performed locally in your browser. We do not store, transmit, or have access to
+        your calculation data.
+      </p>
+
+      <h2 class="text-lg font-semibold text-text pt-2">Analytics</h2>
+      <p>
+        We may use privacy-respecting analytics tools to understand how visitors use our site.
+        This data is aggregated and does not identify individual users.
+      </p>
+
+      <h2 class="text-lg font-semibold text-text pt-2">Advertising</h2>
+      <p>
+        We may display third-party advertisements. Ad networks may use cookies or similar
+        technologies. You can manage cookie preferences in your browser settings.
+      </p>
+
+      <h2 class="text-lg font-semibold text-text pt-2">Local Storage</h2>
+      <p>
+        We use your browser's local storage to save calculator preferences (such as angle mode)
+        and calculation history. This data stays on your device and is never transmitted to our servers.
+      </p>
+
+      <h2 class="text-lg font-semibold text-text pt-2">Contact</h2>
+      <p>
+        If you have questions about this privacy policy, please visit our <a href="/contact/" class="text-primary hover:underline">contact page</a>.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

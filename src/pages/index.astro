@@ -1,0 +1,235 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Calculator from '../components/calculator/Calculator';
+
+const title = 'TI-30XS Calculator Online Free — Scientific Calculator MultiView';
+const description = 'Free online TI-30XS MultiView compatible scientific calculator. MathPrint display, fractions, trig, statistics, and table mode. Works on desktop and mobile — no download needed.';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'TI-30XS MultiView Online Calculator',
+    description: 'Free online scientific calculator compatible with TI-30XS MultiView coursework.',
+    applicationCategory: 'EducationalApplication',
+    operatingSystem: 'Web Browser',
+    url: 'https://scientific-calculator-online.pages.dev/',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    featureList: [
+      'MathPrint display with natural fraction and exponent formatting',
+      'Trigonometric functions (sin, cos, tan) with DEG/RAD/GRAD modes',
+      'Statistics: 1-variable and 2-variable analysis',
+      'Table mode for function evaluation',
+      'Memory storage (7 variables)',
+      'Scientific notation',
+      'Combinatorics (nPr, nCr)',
+      'Works on mobile and desktop browsers',
+      'Keyboard shortcuts support',
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Is the TI-30XS calculator available online for free?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes! This free online scientific calculator is compatible with TI-30XS MultiView coursework. It includes MathPrint display, fractions, trigonometry, statistics, and table mode — all in your web browser with no download required.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I use this calculator on my phone?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, this calculator is fully optimized for mobile devices. It works on any smartphone or tablet with a modern web browser. You can also install it as a PWA (Progressive Web App) for offline access.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is the TI-30XS a graphing calculator?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No, the TI-30XS MultiView is a scientific calculator, not a graphing calculator. It features a multi-line display for viewing expressions and results simultaneously, fraction capabilities, statistics, and table mode, but does not graph equations like the TI-84.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What tests allow the TI-30XS calculator?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The TI-30XS MultiView is approved for many standardized tests including the GED, PSAT, SAT Subject Tests, and various state standardized tests. It is widely used in middle school, high school, and college courses.',
+        },
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <!-- Hero -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl md:text-4xl font-bold mb-3">
+        TI-30XS Calculator Online <span class="text-primary">Free</span>
+      </h1>
+      <p class="text-text-muted max-w-2xl mx-auto">
+        Free online scientific calculator compatible with TI-30XS MultiView coursework.
+        MathPrint display, fractions, statistics, and table mode — right in your browser.
+      </p>
+    </div>
+
+    <!-- Calculator + Sidebar -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Calculator (takes 2 cols on desktop) -->
+      <div class="lg:col-span-2 flex justify-center">
+        <Calculator client:load />
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="space-y-6">
+        <!-- Quick Tips -->
+        <div class="bg-bg-card rounded-xl border border-border p-5">
+          <h2 class="font-semibold text-lg mb-3">Keyboard Shortcuts</h2>
+          <ul class="text-sm text-text-muted space-y-1.5">
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">0-9</kbd> Number keys</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">+ - * /</kbd> Operations</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">Enter</kbd> Calculate</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">Backspace</kbd> Delete</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">Esc</kbd> Clear all</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">( )</kbd> Parentheses</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">^</kbd> Exponent</li>
+          </ul>
+        </div>
+
+        <!-- Features -->
+        <div class="bg-bg-card rounded-xl border border-border p-5">
+          <h2 class="font-semibold text-lg mb-3">Features</h2>
+          <ul class="text-sm text-text-muted space-y-2">
+            <li class="flex gap-2"><span class="text-primary">✓</span> MathPrint natural display</li>
+            <li class="flex gap-2"><span class="text-primary">✓</span> Fraction entry & conversion</li>
+            <li class="flex gap-2"><span class="text-primary">✓</span> Trig functions (DEG/RAD/GRAD)</li>
+            <li class="flex gap-2"><span class="text-primary">✓</span> Logarithmic & exponential</li>
+            <li class="flex gap-2"><span class="text-primary">✓</span> Statistics (1-Var, 2-Var)</li>
+            <li class="flex gap-2"><span class="text-primary">✓</span> Table mode</li>
+            <li class="flex gap-2"><span class="text-primary">✓</span> Memory (7 variables)</li>
+            <li class="flex gap-2"><span class="text-primary">✓</span> Mobile responsive</li>
+            <li class="flex gap-2"><span class="text-primary">✓</span> Keyboard shortcuts</li>
+            <li class="flex gap-2"><span class="text-primary">✓</span> No download required</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <!-- SEO Content Section -->
+    <section class="mt-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-4">Free TI-30XS MultiView Calculator Online</h2>
+      <div class="text-text-muted space-y-4">
+        <p>
+          Looking for a <strong class="text-text">TI-30XS calculator online</strong>? Our free scientific calculator
+          replicates the key functions of the TI-30XS MultiView — the most popular scientific
+          calculator used in middle school, high school, and college courses across the United States.
+        </p>
+        <p>
+          Whether you're studying for the <strong class="text-text">GED</strong>, preparing for the <strong class="text-text">SAT</strong>,
+          or working through your math homework, this online calculator gives you the same
+          functionality right in your web browser — <strong class="text-text">completely free, no download needed</strong>.
+        </p>
+
+        <h3 class="text-xl font-semibold text-text pt-4">What Can This Calculator Do?</h3>
+        <p>
+          This online scientific calculator is compatible with TI-30XS MultiView coursework and supports:
+        </p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong class="text-text">MathPrint Display</strong> — View fractions, exponents, and roots in natural textbook format</li>
+          <li><strong class="text-text">Fraction Operations</strong> — Enter, simplify, and convert between fractions and decimals</li>
+          <li><strong class="text-text">Trigonometry</strong> — sin, cos, tan and their inverses in DEG, RAD, or GRAD mode</li>
+          <li><strong class="text-text">Logarithms</strong> — Natural log (ln), common log (log), and exponential functions</li>
+          <li><strong class="text-text">Statistics</strong> — 1-variable and 2-variable data analysis with mean, standard deviation, and regression</li>
+          <li><strong class="text-text">Table Mode</strong> — Generate x-y tables from any function</li>
+          <li><strong class="text-text">Memory</strong> — Store and recall values in 7 memory variables</li>
+          <li><strong class="text-text">Combinatorics</strong> — Permutations (nPr) and combinations (nCr)</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-text pt-4">How to Use This Online Calculator</h3>
+        <ol class="list-decimal pl-6 space-y-1">
+          <li><strong class="text-text">Click the buttons</strong> on the calculator or use your keyboard to enter expressions</li>
+          <li>Press <strong class="text-text">ENTER</strong> (or the Enter key) to calculate the result</li>
+          <li>Use <strong class="text-text">2nd</strong> to access secondary functions (shown above each key)</li>
+          <li>Press <strong class="text-text">MODE</strong> to cycle between DEG, RAD, and GRAD angle modes</li>
+          <li>Press <strong class="text-text">CLEAR</strong> to reset the calculator</li>
+        </ol>
+
+        <h3 class="text-xl font-semibold text-text pt-4">TI-30XS vs TI-84: What's the Difference?</h3>
+        <p>
+          The <strong class="text-text">TI-30XS MultiView</strong> is a scientific calculator, while the <strong class="text-text">TI-84</strong>
+          is a graphing calculator. The TI-30XS is more affordable, allowed on more standardized tests,
+          and handles all the math you need for algebra, geometry, trigonometry, and statistics courses.
+          The TI-84 adds graphing capabilities needed for pre-calculus and calculus courses.
+        </p>
+
+        <h3 class="text-xl font-semibold text-text pt-4">Works on Any Device</h3>
+        <p>
+          This calculator works on <strong class="text-text">desktop computers, laptops, tablets, and smartphones</strong>.
+          It's fully responsive and supports both touch and keyboard input. You can even add it
+          to your home screen for quick access.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="mt-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">
+            Is the TI-30XS calculator available online for free?
+            <span class="text-text-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-text-muted text-sm">
+            Yes! This free online scientific calculator is compatible with TI-30XS MultiView coursework.
+            It includes MathPrint display, fractions, trigonometry, statistics, and table mode —
+            all in your web browser with no download required.
+          </p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">
+            Can I use this calculator on my phone?
+            <span class="text-text-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-text-muted text-sm">
+            Yes, this calculator is fully optimized for mobile devices. It works on any smartphone
+            or tablet with a modern web browser. You can also add it to your home screen for quick access.
+          </p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">
+            Is the TI-30XS a graphing calculator?
+            <span class="text-text-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-text-muted text-sm">
+            No, the TI-30XS MultiView is a scientific calculator, not a graphing calculator.
+            It features a multi-line display, fraction capabilities, statistics, and table mode,
+            but does not graph equations like the TI-84.
+          </p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">
+            What tests allow the TI-30XS calculator?
+            <span class="text-text-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-text-muted text-sm">
+            The TI-30XS MultiView is approved for many standardized tests including the GED,
+            PSAT, SAT Subject Tests, and various state standardized tests.
+          </p>
+        </details>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

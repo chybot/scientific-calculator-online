@@ -1,0 +1,127 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonicalURL?: string;
+  jsonLd?: object | object[];
+}
+
+const {
+  title,
+  description,
+  ogImage = '/og.png',
+  canonicalURL,
+  jsonLd,
+} = Astro.props;
+
+const siteURL = Astro.site?.toString().replace(/\/$/, '') ?? 'https://scientific-calculator-online.pages.dev';
+const canonical = canonicalURL ?? Astro.url.href;
+const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${siteURL}${ogImage}`;
+
+import '../styles/global.css';
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Scientific Calculator Online',
+  url: siteURL,
+  description: 'Free online scientific calculator with TI-30XS MultiView compatibility. MathPrint display, fractions, statistics, and table mode.',
+};
+
+const allJsonLd = jsonLd
+  ? Array.isArray(jsonLd) ? [websiteJsonLd, ...jsonLd] : [websiteJsonLd, jsonLd]
+  : [websiteJsonLd];
+---
+
+<!doctype html>
+<html lang="en" class="bg-bg text-text">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={absoluteOgImage} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Scientific Calculator Online" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteOgImage} />
+
+    <!-- JSON-LD -->
+    {allJsonLd.map((ld) => (
+      <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+    ))}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#1a1a2e" />
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="SciCalc" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <header class="border-b border-border bg-bg-card/80 backdrop-blur-sm sticky top-0 z-50">
+      <nav class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        <a href="/" class="text-lg font-bold text-text hover:text-primary transition-colors">
+          ⌘ SciCalc Online
+        </a>
+        <div class="flex gap-4 text-sm text-text-muted">
+          <a href="/" class="hover:text-text transition-colors">Calculator</a>
+          <a href="/tutorial/" class="hover:text-text transition-colors">Tutorials</a>
+          <a href="/about/" class="hover:text-text transition-colors">About</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <footer class="border-t border-border bg-bg-card/50 mt-auto">
+      <div class="max-w-6xl mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-text-muted">
+          <div>
+            <h3 class="font-semibold text-text mb-2">Scientific Calculator Online</h3>
+            <p>Free online scientific calculator compatible with TI-30XS MultiView coursework. MathPrint display, statistics, and table mode.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-text mb-2">Calculators</h3>
+            <ul class="space-y-1">
+              <li><a href="/" class="hover:text-text transition-colors">TI-30XS MultiView</a></li>
+              <li><a href="/ti-30xa/" class="hover:text-text transition-colors">TI-30XA</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold text-text mb-2">Resources</h3>
+            <ul class="space-y-1">
+              <li><a href="/tutorial/" class="hover:text-text transition-colors">Calculator Tutorials</a></li>
+              <li><a href="/about/" class="hover:text-text transition-colors">About</a></li>
+              <li><a href="/privacy/" class="hover:text-text transition-colors">Privacy Policy</a></li>
+              <li><a href="/terms/" class="hover:text-text transition-colors">Terms of Use</a></li>
+              <li><a href="/contact/" class="hover:text-text transition-colors">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-8 pt-4 border-t border-border text-xs text-text-muted text-center">
+          <p>This is an independent project. Not affiliated with Texas Instruments Inc. TI-30XS MultiView is a trademark of Texas Instruments.</p>
+          <p class="mt-1">&copy; {new Date().getFullYear()} Scientific Calculator Online. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

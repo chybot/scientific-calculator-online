@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Terms of Use — Scientific Calculator Online"
+  description="Terms of use for Scientific Calculator Online."
+>
+  <div class="max-w-3xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold mb-6">Terms of Use</h1>
+    <div class="text-text-muted space-y-4 text-sm">
+      <p><em>Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</em></p>
+
+      <h2 class="text-lg font-semibold text-text pt-2">Use of Service</h2>
+      <p>
+        Scientific Calculator Online provides free online calculator tools for educational purposes.
+        You may use the calculators for personal, educational, or non-commercial purposes.
+      </p>
+
+      <h2 class="text-lg font-semibold text-text pt-2">Accuracy</h2>
+      <p>
+        While we strive for accuracy, this calculator is provided "as is" without warranty.
+        Results should be verified for critical applications. Do not rely solely on this
+        calculator for professional, financial, or safety-critical calculations.
+      </p>
+
+      <h2 class="text-lg font-semibold text-text pt-2">Trademarks</h2>
+      <p>
+        TI-30XS MultiView, TI-84, and Texas Instruments are trademarks of Texas Instruments
+        Incorporated. This website is an independent project and is not affiliated with,
+        endorsed by, or sponsored by Texas Instruments Inc.
+      </p>
+
+      <h2 class="text-lg font-semibold text-text pt-2">Limitation of Liability</h2>
+      <p>
+        We are not liable for any damages arising from the use of this calculator.
+        Use at your own discretion.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

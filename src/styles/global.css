@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  /* Calculator brand colors */
+  --color-calc-body: #1a1a2e;
+  --color-calc-display: #c8d6c5;
+  --color-calc-display-text: #1a1a1a;
+  --color-calc-key: #3d3d5c;
+  --color-calc-key-hover: #4a4a6a;
+  --color-calc-key-active: #2d2d4c;
+  --color-calc-key-text: #ffffff;
+  --color-calc-key-num: #4a4a6a;
+  --color-calc-key-op: #e67e22;
+  --color-calc-key-func: #2980b9;
+  --color-calc-key-2nd: #16a085;
+  --color-calc-key-enter: #27ae60;
+
+  /* Site colors */
+  --color-primary: #2563eb;
+  --color-primary-dark: #1d4ed8;
+  --color-bg: #0f172a;
+  --color-bg-card: #1e293b;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-border: #334155;
+}
