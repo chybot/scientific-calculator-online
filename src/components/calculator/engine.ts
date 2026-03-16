@@ -1,5 +1,5 @@
 /**
- * TI-30XS MultiView Compatible Calculator Engine
+ * Scientific Calculator Engine — independently developed simulator
  * Functional simulation — no TI ROM or firmware used.
  */
 

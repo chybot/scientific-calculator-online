@@ -2,15 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Calculator from '../components/calculator/Calculator';
 
-const title = 'TI-30XS Calculator Online Free — Scientific Calculator MultiView';
-const description = 'Free online TI-30XS MultiView compatible scientific calculator. MathPrint display, fractions, trig, statistics, and table mode. Works on desktop and mobile — no download needed.';
+const title = 'TI-30XS Calculator Online Free — Scientific Calculator Simulator';
+const description = 'Free online TI-30XS MultiView scientific calculator simulator. Natural math display, fractions, trig, statistics, and table mode. Works on desktop and mobile — no download needed.';
 
 const jsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'TI-30XS MultiView Online Calculator',
-    description: 'Free online scientific calculator compatible with TI-30XS MultiView coursework.',
+    name: 'SciCalc Online — Scientific Calculator Simulator',
+    description: 'Free online scientific calculator simulator designed for students. Compatible with TI-30XS MultiView coursework.',
     applicationCategory: 'EducationalApplication',
     operatingSystem: 'Web Browser',
     url: 'https://scientificcalc.org/',
@@ -20,7 +20,7 @@ const jsonLd = [
       priceCurrency: 'USD',
     },
     featureList: [
-      'MathPrint display with natural fraction and exponent formatting',
+      'Natural math display with fraction and exponent formatting',
       'Trigonometric functions (sin, cos, tan) with DEG/RAD/GRAD modes',
       'Statistics: 1-variable and 2-variable analysis',
       'Table mode for function evaluation',
@@ -40,7 +40,7 @@ const jsonLd = [
         name: 'Is the TI-30XS calculator available online for free?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes! This free online scientific calculator is compatible with TI-30XS MultiView coursework. It includes MathPrint display, fractions, trigonometry, statistics, and table mode — all in your web browser with no download required.',
+          text: 'Yes. SciCalc Online is a free scientific calculator simulator designed for students who use the TI-30XS MultiView in class. It offers similar functions — including natural math display, fractions, trigonometry, statistics, and table mode — all in your web browser. Note: This is an independently developed tool, not an official Texas Instruments product.',
         },
       },
       {
@@ -48,7 +48,7 @@ const jsonLd = [
         name: 'Can I use this calculator on my phone?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes, this calculator is fully optimized for mobile devices. It works on any smartphone or tablet with a modern web browser. You can also install it as a PWA (Progressive Web App) for offline access.',
+          text: 'Yes. This calculator is fully optimized for mobile devices and works on any smartphone or tablet with a modern web browser. You can also add it to your home screen for quick access.',
         },
       },
       {
@@ -56,7 +56,7 @@ const jsonLd = [
         name: 'Is the TI-30XS a graphing calculator?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'No, the TI-30XS MultiView is a scientific calculator, not a graphing calculator. It features a multi-line display for viewing expressions and results simultaneously, fraction capabilities, statistics, and table mode, but does not graph equations like the TI-84.',
+          text: 'No. The TI-30XS MultiView is a scientific calculator, not a graphing calculator. It features a multi-line display, fraction capabilities, statistics, and table mode, but does not graph equations like the TI-84.',
         },
       },
       {
@@ -80,21 +80,21 @@ const jsonLd = [
         TI-30XS Calculator Online <span class="text-primary">Free</span>
       </h1>
       <p class="text-text-muted max-w-2xl mx-auto">
-        Free online scientific calculator compatible with TI-30XS MultiView coursework.
-        MathPrint display, fractions, statistics, and table mode — right in your browser.
+        Free online scientific calculator simulator designed for students who use the TI-30XS MultiView.
+        Natural math display, fractions, statistics, and table mode — right in your browser.
+      </p>
+      <p class="text-[10px] text-text-muted/50 mt-2 italic">
+        Not affiliated with Texas Instruments. This is an independently developed simulator.
       </p>
     </div>
 
     <!-- Calculator + Sidebar -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <!-- Calculator (takes 2 cols on desktop) -->
       <div class="lg:col-span-2 flex justify-center">
         <Calculator client:load />
       </div>
 
-      <!-- Sidebar -->
       <aside class="space-y-6">
-        <!-- Quick Tips -->
         <div class="bg-bg-card rounded-xl border border-border p-5">
           <h2 class="font-semibold text-lg mb-3">Keyboard Shortcuts</h2>
           <ul class="text-sm text-text-muted space-y-1.5">
@@ -108,11 +108,10 @@ const jsonLd = [
           </ul>
         </div>
 
-        <!-- Features -->
         <div class="bg-bg-card rounded-xl border border-border p-5">
           <h2 class="font-semibold text-lg mb-3">Features</h2>
           <ul class="text-sm text-text-muted space-y-2">
-            <li class="flex gap-2"><span class="text-primary">✓</span> MathPrint natural display</li>
+            <li class="flex gap-2"><span class="text-primary">✓</span> Natural math display</li>
             <li class="flex gap-2"><span class="text-primary">✓</span> Fraction entry & conversion</li>
             <li class="flex gap-2"><span class="text-primary">✓</span> Trig functions (DEG/RAD/GRAD)</li>
             <li class="flex gap-2"><span class="text-primary">✓</span> Logarithmic & exponential</li>
@@ -132,22 +131,22 @@ const jsonLd = [
       <h2 class="text-2xl font-bold mb-4">Free TI-30XS MultiView Calculator Online</h2>
       <div class="text-text-muted space-y-4">
         <p>
-          Looking for a <strong class="text-text">TI-30XS calculator online</strong>? Our free scientific calculator
-          replicates the key functions of the TI-30XS MultiView — the most popular scientific
-          calculator used in middle school, high school, and college courses across the United States.
+          Looking for a <strong class="text-text">TI-30XS calculator online</strong>? This free scientific calculator
+          simulator is designed for students who use the TI-30XS MultiView in their math, science,
+          and statistics courses. It provides the same types of scientific functions — all in your web browser.
         </p>
         <p>
           Whether you're studying for the <strong class="text-text">GED</strong>, preparing for the <strong class="text-text">SAT</strong>,
-          or working through your math homework, this online calculator gives you the same
-          functionality right in your web browser — <strong class="text-text">completely free, no download needed</strong>.
+          or working through your math homework, this online calculator simulator gives you
+          the scientific functionality you need — <strong class="text-text">completely free, no download needed</strong>.
         </p>
 
         <h3 class="text-xl font-semibold text-text pt-4">What Can This Calculator Do?</h3>
         <p>
-          This online scientific calculator is compatible with TI-30XS MultiView coursework and supports:
+          This online scientific calculator simulator supports the same types of operations taught in courses that use the TI-30XS MultiView:
         </p>
         <ul class="list-disc pl-6 space-y-1">
-          <li><strong class="text-text">MathPrint Display</strong> — View fractions, exponents, and roots in natural textbook format</li>
+          <li><strong class="text-text">Natural Math Display</strong> — View fractions, exponents, and roots in natural textbook format</li>
           <li><strong class="text-text">Fraction Operations</strong> — Enter, simplify, and convert between fractions and decimals</li>
           <li><strong class="text-text">Trigonometry</strong> — sin, cos, tan and their inverses in DEG, RAD, or GRAD mode</li>
           <li><strong class="text-text">Logarithms</strong> — Natural log (ln), common log (log), and exponential functions</li>
@@ -180,6 +179,16 @@ const jsonLd = [
           It's fully responsive and supports both touch and keyboard input. You can even add it
           to your home screen for quick access.
         </p>
+
+        <!-- Disclaimer -->
+        <div class="bg-bg-card/50 rounded-lg border border-border p-4 mt-6 text-xs text-text-muted/70">
+          <strong>Disclaimer:</strong> This is an independently developed scientific calculator simulator.
+          It is not made by, endorsed by, or affiliated with Texas Instruments Incorporated.
+          TI-30XS MultiView, TI-84, and MathPrint are trademarks of Texas Instruments Incorporated,
+          used here solely to describe the type of coursework this tool is designed to support
+          (<a href="https://en.wikipedia.org/wiki/Nominative_use" class="underline hover:text-text">nominative fair use</a>).
+          This simulator was built from scratch and does not contain any Texas Instruments software, firmware, or code.
+        </div>
       </div>
     </section>
 
@@ -193,9 +202,11 @@ const jsonLd = [
             <span class="text-text-muted group-open:rotate-180 transition-transform">▼</span>
           </summary>
           <p class="mt-3 text-text-muted text-sm">
-            Yes! This free online scientific calculator is compatible with TI-30XS MultiView coursework.
-            It includes MathPrint display, fractions, trigonometry, statistics, and table mode —
+            Yes! This free online scientific calculator simulator is designed for students
+            who use the TI-30XS MultiView in class. It provides similar functions — including
+            natural math display, fractions, trigonometry, statistics, and table mode —
             all in your web browser with no download required.
+            <em class="block mt-1 text-xs opacity-70">Note: This is an independently developed tool, not an official Texas Instruments product.</em>
           </p>
         </details>
         <details class="bg-bg-card rounded-xl border border-border p-5 group">
@@ -214,7 +225,7 @@ const jsonLd = [
             <span class="text-text-muted group-open:rotate-180 transition-transform">▼</span>
           </summary>
           <p class="mt-3 text-text-muted text-sm">
-            No, the TI-30XS MultiView is a scientific calculator, not a graphing calculator.
+            No. The TI-30XS MultiView is a scientific calculator, not a graphing calculator.
             It features a multi-line display, fraction capabilities, statistics, and table mode,
             but does not graph equations like the TI-84.
           </p>
