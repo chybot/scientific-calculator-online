@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Calculator from '../../components/calculator/Calculator';
-import CalculatorHub from '../../components/CalculatorHub.astro';
 
 const title = 'Calculadora TI-30XS en Línea Gratis — Simulador Científico (2026)';
 const description = 'Calculadora TI-30XS MultiView en línea gratuita. Pantalla MathPrint, fracciones, trigonometría, estadísticas, modo tabla. Sin descarga — funciona en ordenador y móvil.';
@@ -46,7 +45,6 @@ const jsonLd = [
 
 <BaseLayout title={title} description={description} jsonLd={jsonLd} lang="es" alternates={alternates}>
   <div class="max-w-6xl mx-auto px-4 py-8">
-    <CalculatorHub current="" lang="es" />
 
     <div class="text-center mb-8">
       <h1 class="text-3xl md:text-4xl font-bold mb-3">

@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Calculator from '../components/calculator/Calculator';
-import CalculatorHub from '../components/CalculatorHub.astro';
 import { tiNspire } from '../calculators/ti-nspire';
 
 const title = 'TI-Nspire Calculator Online Free — CX II Color Graphing Simulator (No Download)';
@@ -55,7 +54,6 @@ const jsonLd = [
 
 <BaseLayout title={title} description={description} jsonLd={jsonLd}>
   <div class="max-w-6xl mx-auto px-4 py-8">
-    <CalculatorHub current="ti-nspire" />
 
     <nav class="text-xs text-text-muted mb-4" aria-label="Breadcrumb">
       <a href="/" class="hover:text-text">Home</a>

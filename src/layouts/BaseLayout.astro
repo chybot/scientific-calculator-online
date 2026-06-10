@@ -36,6 +36,73 @@ if (alternates) {
 }
 const switcherLang = (lang === 'fr' || lang === 'es') ? lang : 'en';
 
+// UI chrome translations (header nav + footer) keyed by page lang
+const uiStrings: Record<LangCode, {
+  calculators: string;
+  allCalculators: string;
+  about: string;
+  siteTagline: string;
+  resources: string;
+  privacy: string;
+  terms: string;
+  contact: string;
+  disclaimer: string;
+  rights: string;
+}> = {
+  en: {
+    calculators: 'Calculators',
+    allCalculators: 'All Calculators',
+    about: 'About',
+    siteTagline: 'Free online scientific calculator for students. Natural math display, fractions, statistics, and table mode. Designed for coursework compatibility.',
+    resources: 'Resources',
+    privacy: 'Privacy Policy',
+    terms: 'Terms of Use',
+    contact: 'Contact',
+    disclaimer: 'This is an independently developed simulator, not made by or affiliated with Texas Instruments Inc. TI-30XS MultiView, TI-85, TI-84, and MathPrint are trademarks of Texas Instruments Incorporated.',
+    rights: 'All rights reserved.',
+  },
+  fr: {
+    calculators: 'Calculatrices',
+    allCalculators: 'Toutes les calculatrices',
+    about: 'À propos',
+    siteTagline: 'Calculatrice scientifique en ligne gratuite pour étudiants. Affichage mathématique naturel, fractions, statistiques et mode tableau.',
+    resources: 'Ressources',
+    privacy: 'Politique de confidentialité',
+    terms: "Conditions d'utilisation",
+    contact: 'Contact',
+    disclaimer: "Ceci est un simulateur développé indépendamment, non créé par ni affilié à Texas Instruments Inc. TI-30XS MultiView, TI-85, TI-84 et MathPrint sont des marques déposées de Texas Instruments Incorporated.",
+    rights: 'Tous droits réservés.',
+  },
+  es: {
+    calculators: 'Calculadoras',
+    allCalculators: 'Todas las calculadoras',
+    about: 'Acerca de',
+    siteTagline: 'Calculadora científica en línea gratuita para estudiantes. Pantalla matemática natural, fracciones, estadísticas y modo tabla.',
+    resources: 'Recursos',
+    privacy: 'Política de privacidad',
+    terms: 'Términos de uso',
+    contact: 'Contacto',
+    disclaimer: 'Este es un simulador desarrollado de forma independiente, no creado por ni afiliado a Texas Instruments Inc. TI-30XS MultiView, TI-85, TI-84 y MathPrint son marcas registradas de Texas Instruments Incorporated.',
+    rights: 'Todos los derechos reservados.',
+  },
+};
+const t = uiStrings[switcherLang];
+
+// Calculator nav items; model pages with a localized version link to it
+const localizedPages: Partial<Record<LangCode, Record<string, string>>> = {
+  fr: { '/ti-85/': '/fr/ti-85/' },
+  es: { '/': '/es/ti-30xs/' },
+};
+const localize = (href: string) => localizedPages[switcherLang]?.[href] ?? href;
+const calcLinks = [
+  { href: '/', label: 'TI-30XS MultiView' },
+  { href: '/ti-85/', label: 'TI-85' },
+  { href: '/ti-84/', label: 'TI-84 Plus' },
+  { href: '/ti-nspire/', label: 'TI-Nspire CX' },
+  { href: '/ti-30xa/', label: 'TI-30XA' },
+  { href: '/ti-30xiis/', label: 'TI-30X IIS' },
+].map((l) => ({ ...l, href: localize(l.href) }));
+
 const siteURL = Astro.site?.toString().replace(/\/$/, '') ?? 'https://scientificcalc.org';
 const canonical = canonicalURL ?? Astro.url.href;
 const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${siteURL}${ogImage}`;
@@ -114,20 +181,17 @@ const allJsonLd = jsonLd
         <div class="flex items-center gap-1 text-sm text-text-muted">
           <div class="relative group">
             <button class="min-h-[44px] px-2 hover:text-text transition-colors flex items-center gap-1" aria-haspopup="true">
-              Calculators <span class="text-[10px]" aria-hidden="true">▾</span>
+              {t.calculators} <span class="text-[10px]" aria-hidden="true">▾</span>
             </button>
             <div role="menu" class="absolute right-0 top-full mt-1 bg-bg-card border border-border rounded-lg shadow-xl py-1 min-w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible focus-within:opacity-100 focus-within:visible transition-all z-50">
-              <a href="/" role="menuitem" class="flex items-center px-4 min-h-[44px] hover:bg-bg transition-colors">TI-30XS MultiView</a>
-              <a href="/ti-85/" role="menuitem" class="flex items-center px-4 min-h-[44px] hover:bg-bg transition-colors">TI-85</a>
-              <a href="/ti-84/" role="menuitem" class="flex items-center px-4 min-h-[44px] hover:bg-bg transition-colors">TI-84 Plus</a>
-              <a href="/ti-nspire/" role="menuitem" class="flex items-center px-4 min-h-[44px] hover:bg-bg transition-colors">TI-Nspire CX</a>
-              <a href="/ti-30xa/" role="menuitem" class="flex items-center px-4 min-h-[44px] hover:bg-bg transition-colors">TI-30XA</a>
-              <a href="/ti-30xiis/" role="menuitem" class="flex items-center px-4 min-h-[44px] hover:bg-bg transition-colors">TI-30X IIS</a>
+              {calcLinks.map((l) => (
+                <a href={l.href} role="menuitem" class="flex items-center px-4 min-h-[44px] hover:bg-bg transition-colors">{l.label}</a>
+              ))}
               <div class="border-t border-border my-1" role="separator"></div>
-              <a href="/calculators/" role="menuitem" class="flex items-center px-4 min-h-[44px] hover:bg-bg transition-colors text-text-muted text-xs">All Calculators</a>
+              <a href="/calculators/" role="menuitem" class="flex items-center px-4 min-h-[44px] hover:bg-bg transition-colors text-text-muted text-xs">{t.allCalculators}</a>
             </div>
           </div>
-          <a href="/about/" class="min-h-[44px] px-2 hover:text-text transition-colors flex items-center">About</a>
+          <a href="/about/" class="min-h-[44px] px-2 hover:text-text transition-colors flex items-center">{t.about}</a>
           <LanguageSwitcher current={switcherLang} links={switcherLinks} />
         </div>
       </nav>
@@ -142,33 +206,30 @@ const allJsonLd = jsonLd
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-text-muted">
           <div>
             <h3 class="font-semibold text-text mb-2">Scientific Calculator Online</h3>
-            <p>Free online scientific calculator for students. Natural math display, fractions, statistics, and table mode. Designed for coursework compatibility.</p>
+            <p>{t.siteTagline}</p>
           </div>
           <div>
-            <h3 class="font-semibold text-text mb-2">Calculators</h3>
+            <h3 class="font-semibold text-text mb-2">{t.calculators}</h3>
             <ul class="space-y-1">
-              <li><a href="/" class="hover:text-text transition-colors">TI-30XS MultiView</a></li>
-              <li><a href="/ti-85/" class="hover:text-text transition-colors">TI-85</a></li>
-              <li><a href="/ti-84/" class="hover:text-text transition-colors">TI-84 Plus</a></li>
-              <li><a href="/ti-nspire/" class="hover:text-text transition-colors">TI-Nspire CX</a></li>
-              <li><a href="/ti-30xa/" class="hover:text-text transition-colors">TI-30XA</a></li>
-              <li><a href="/ti-30xiis/" class="hover:text-text transition-colors">TI-30X IIS</a></li>
-              <li><a href="/calculators/" class="hover:text-text transition-colors">All Calculators</a></li>
+              {calcLinks.map((l) => (
+                <li><a href={l.href} class="hover:text-text transition-colors">{l.label}</a></li>
+              ))}
+              <li><a href="/calculators/" class="hover:text-text transition-colors">{t.allCalculators}</a></li>
             </ul>
           </div>
           <div>
-            <h3 class="font-semibold text-text mb-2">Resources</h3>
+            <h3 class="font-semibold text-text mb-2">{t.resources}</h3>
             <ul class="space-y-1">
-              <li><a href="/about/" class="hover:text-text transition-colors">About</a></li>
-              <li><a href="/privacy/" class="hover:text-text transition-colors">Privacy Policy</a></li>
-              <li><a href="/terms/" class="hover:text-text transition-colors">Terms of Use</a></li>
-              <li><a href="/contact/" class="hover:text-text transition-colors">Contact</a></li>
+              <li><a href="/about/" class="hover:text-text transition-colors">{t.about}</a></li>
+              <li><a href="/privacy/" class="hover:text-text transition-colors">{t.privacy}</a></li>
+              <li><a href="/terms/" class="hover:text-text transition-colors">{t.terms}</a></li>
+              <li><a href="/contact/" class="hover:text-text transition-colors">{t.contact}</a></li>
             </ul>
           </div>
         </div>
         <div class="mt-8 pt-4 border-t border-border text-xs text-text-muted text-center">
-          <p>This is an independently developed simulator, not made by or affiliated with Texas Instruments Inc. TI-30XS MultiView, TI-85, TI-84, and MathPrint are trademarks of Texas Instruments Incorporated.</p>
-          <p class="mt-1">&copy; {new Date().getFullYear()} Scientific Calculator Online. All rights reserved.</p>
+          <p>{t.disclaimer}</p>
+          <p class="mt-1">&copy; {new Date().getFullYear()} Scientific Calculator Online. {t.rights}</p>
         </div>
       </div>
     </footer>

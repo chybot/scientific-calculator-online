@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Calculator from '../../components/calculator/Calculator';
-import CalculatorHub from '../../components/CalculatorHub.astro';
 import { ti85 } from '../../calculators/ti-85';
 
 const title = 'Calculatrice TI-85 en Ligne Gratuite — Simulateur Scientifique (2026)';
@@ -47,7 +46,6 @@ const jsonLd = [
 
 <BaseLayout title={title} description={description} jsonLd={jsonLd} lang="fr" alternates={alternates}>
   <div class="max-w-6xl mx-auto px-4 py-8">
-    <CalculatorHub current="ti-85" lang="fr" />
 
     <div class="text-center mb-8">
       <h1 class="text-3xl md:text-4xl font-bold mb-3">
