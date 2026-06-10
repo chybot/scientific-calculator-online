@@ -1,0 +1,10 @@
+# 301 — old tutorial link that was in the footer pre-2026-06-01
+/tutorial            /  301
+/tutorial/           /  301
+/tutorial/*          /  301
+
+# Catch the Cloudflare Email Obfuscation URL that was crawled before
+# the feature was disabled. Redirect to contact page so Google can drop
+# the 404 instead of leaving it dangling.
+/cdn-cgi/l/email-protection            /contact/  301
+/cdn-cgi/l/email-protection*           /contact/  301

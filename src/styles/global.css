@@ -1,5 +1,57 @@
 @import "tailwindcss";
 
+@layer components {
+  /* Long-form SEO sections — break visual rhythm with a left accent on subheads */
+  .seo-section h3 {
+    position: relative;
+    padding-left: 0.75rem;
+  }
+  .seo-section h3::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    bottom: 0.35em;
+    width: 3px;
+    background: var(--color-primary);
+    border-radius: 3px;
+    opacity: 0.7;
+  }
+  /* Compact check bullet — replaces bare ✓ with a contained badge */
+  .check-bullet {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 9999px;
+    background: color-mix(in oklab, var(--color-primary) 18%, transparent);
+    color: var(--color-primary);
+    font-size: 10px;
+    line-height: 1;
+  }
+}
+
+@layer base {
+  *:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  button, [role="button"], a, summary, details > summary {
+    -webkit-tap-highlight-color: transparent;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
 @theme {
   /* Calculator brand colors */
   --color-calc-body: #1a1a2e;

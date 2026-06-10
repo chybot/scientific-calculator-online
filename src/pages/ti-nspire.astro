@@ -1,0 +1,204 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Calculator from '../components/calculator/Calculator';
+import CalculatorHub from '../components/CalculatorHub.astro';
+import { tiNspire } from '../calculators/ti-nspire';
+
+const title = 'TI-Nspire Calculator Online Free — CX II Color Graphing Simulator (No Download)';
+const description = 'Free TI-Nspire CX II calculator online. Scientific functions, trig, logs, statistics, table mode and natural math display — works in any browser on desktop and mobile.';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'SciCalc Online — TI-Nspire CX Calculator Simulator',
+    description: 'Free online TI-Nspire CX II calculator simulator with scientific, trigonometric, statistics and table-mode workflows.',
+    applicationCategory: 'EducationalApplication',
+    operatingSystem: 'Web Browser',
+    url: 'https://scientificcalc.org/ti-nspire/',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    featureList: [
+      'TI-Nspire CX-style key layout',
+      'Scientific functions and order of operations',
+      'Trigonometric functions (DEG/RAD/GRAD)',
+      'Logarithmic and exponential functions',
+      'Statistics: 1-Var and 2-Var',
+      'Table mode (f(x) → table)',
+      'Memory STO→ / RCL (7 variables)',
+      'Combinatorics (nPr, nCr)',
+      'Mobile and desktop responsive',
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://scientificcalc.org/' },
+      { '@type': 'ListItem', position: 2, name: 'Calculators', item: 'https://scientificcalc.org/calculators/' },
+      { '@type': 'ListItem', position: 3, name: 'TI-Nspire Calculator', item: 'https://scientificcalc.org/ti-nspire/' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: 'Is there a free TI-Nspire calculator online?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. This free TI-Nspire CX simulator runs in your browser — no download required. It supports the scientific, trigonometric and statistics workflows you need for AP Calc, AP Stats, Pre-Calc, IB Math and SAT/ACT prep. Note: This is an independently developed simulator, not an official Texas Instruments product, and does not include the document-based authoring environment of the physical TI-Nspire OS.' } },
+      { '@type': 'Question', name: 'Is this the TI-Nspire CX, CX II or CX CAS?', acceptedAnswer: { '@type': 'Answer', text: 'The simulator follows the standard CX/CX II key layout shared by the TI-Nspire CX, CX II, and CX CAS / CX II CAS. The CAS engine, document/page structure, and color graphing UI from the physical TI-Nspire OS are not part of the browser simulator, but the scientific and statistics workflows are equivalent for most coursework.' } },
+      { '@type': 'Question', name: 'Can I use the TI-Nspire online for the SAT or ACT?', acceptedAnswer: { '@type': 'Answer', text: 'The physical TI-Nspire CX II (non-CAS) is approved for SAT, ACT, PSAT, AP Calc, AP Stats and IB. The CAS variant is allowed on SAT and AP but not on the ACT. The online simulator is for practice and homework only — bring your physical calculator on test day.' } },
+      { '@type': 'Question', name: 'What is the difference between TI-Nspire CX II and TI-Nspire CX II CAS?', acceptedAnswer: { '@type': 'Answer', text: 'The CAS (Computer Algebra System) version can solve equations symbolically (factor, expand, solve, ∫ symbolic integrals). The non-CAS version is numerical only. The CAS is not allowed on the ACT but is allowed on the SAT and AP exams.' } },
+      { '@type': 'Question', name: 'TI-Nspire CX II vs TI-84 Plus — which is better?', acceptedAnswer: { '@type': 'Answer', text: 'The TI-Nspire CX II has a sharper color screen, a document/page system, drag-and-drop graphs, and more memory. The TI-84 Plus has a simpler menu, shorter learning curve and is more common in U.S. high schools. For AP Calc and IB Math, many teachers prefer Nspire; for SAT and Algebra II, TI-84 is fine.' } },
+      { '@type': 'Question', name: 'Does this TI-Nspire online calculator work on my phone?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — responsive on iPhone, Android phones, iPad, Android tablets, Chromebook and any desktop browser.' } },
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <CalculatorHub current="ti-nspire" />
+
+    <nav class="text-xs text-text-muted mb-4" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-text">Home</a>
+      <span class="mx-1.5 opacity-50">/</span>
+      <a href="/calculators/" class="hover:text-text">Calculators</a>
+      <span class="mx-1.5 opacity-50">/</span>
+      <span class="text-text">TI-Nspire</span>
+    </nav>
+
+    <div class="text-center mb-8">
+      <h1 class="text-3xl md:text-4xl font-bold mb-3">
+        TI-Nspire Calculator Online <span class="text-primary">Free</span>
+      </h1>
+      <p class="text-text-muted max-w-2xl mx-auto">
+        Free TI-Nspire CX II simulator online. Scientific, trig, stats and table mode in your browser — perfect for AP Calc, AP Stats, IB Math and homework.
+      </p>
+      <p class="text-[10px] text-text-muted/50 mt-2 italic">
+        Not affiliated with Texas Instruments. Independently developed simulator.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div class="lg:col-span-2 xl:col-span-3 flex justify-center">
+        <Calculator client:load model={tiNspire} />
+      </div>
+
+      <aside class="space-y-6">
+        <div class="bg-bg-card rounded-xl border border-border p-5">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-text-muted mb-3">TI-Nspire CX Features</h3>
+          <ul class="text-sm text-text-muted space-y-2">
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> 2nd / menu / template keys</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> DEG / RAD / GRAD modes</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Natural math display</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Trig + inverse trig</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> log / ln / 10^x / e^x</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> STAT: 1-Var &amp; 2-Var Stats</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> TABLE: Y= function tables</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Memory sto→ / RCL</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> nPr / nCr / factorial</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Mobile + keyboard input</li>
+          </ul>
+        </div>
+
+        <div class="bg-bg-card rounded-xl border border-border p-5">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-text-muted mb-3">Other Calculators</h3>
+          <ul class="text-sm text-text-muted space-y-2">
+            <li><a href="/" data-cta="sidebar:ti-30xs" class="text-primary hover:underline">TI-30XS MultiView</a></li>
+            <li><a href="/ti-84/" data-cta="sidebar:ti-84" class="text-primary hover:underline">TI-84 Plus</a></li>
+            <li><a href="/ti-85/" data-cta="sidebar:ti-85" class="text-primary hover:underline">TI-85 Calculator</a></li>
+            <li><a href="/ti-30xa/" data-cta="sidebar:ti-30xa" class="text-primary hover:underline">TI-30XA</a></li>
+            <li><a href="/calculators/" data-cta="sidebar:all" class="text-primary hover:underline">View All</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <section class="seo-section mt-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-4">Free TI-Nspire CX II Calculator Online</h2>
+      <div class="text-text-muted space-y-4">
+        <p>
+          The <strong class="text-text">TI-Nspire CX II</strong> is Texas Instruments' flagship color graphing calculator — a high-resolution
+          color screen, document/page workflow, dynamic geometry, and (on the CAS version) a Computer Algebra System. This free
+          <strong class="text-text">TI-Nspire calculator online</strong> brings the scientific, trig, statistics and table-mode workflows
+          to your browser so you can study from any device.
+        </p>
+
+        <h3 class="text-xl font-semibold text-text pt-4">TI-Nspire CX II vs TI-Nspire CX II CAS</h3>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong class="text-text">TI-Nspire CX II</strong> — numerical only. Allowed on the SAT, ACT, AP and IB. The choice for most U.S. high schools.</li>
+          <li><strong class="text-text">TI-Nspire CX II CAS</strong> — adds symbolic algebra (factor, expand, solve, symbolic integrals). Allowed on SAT and AP. <strong>Not</strong> allowed on the ACT.</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-text pt-4">TI-Nspire CX II vs TI-84 Plus CE</h3>
+        <div class="overflow-x-auto mt-2">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="border-b border-border">
+                <th class="text-left py-2 pr-4 text-text">Feature</th>
+                <th class="text-left py-2 px-4 text-text">TI-Nspire CX II</th>
+                <th class="text-left py-2 pl-4 text-text">TI-84 Plus CE</th>
+              </tr>
+            </thead>
+            <tbody class="text-text-muted">
+              <tr class="border-b border-border/50"><td class="py-2 pr-4">Screen</td><td class="py-2 px-4">320×240 color</td><td class="py-2 pl-4">320×240 color</td></tr>
+              <tr class="border-b border-border/50"><td class="py-2 pr-4">UI model</td><td class="py-2 px-4">Documents / pages</td><td class="py-2 pl-4">Single screen menus</td></tr>
+              <tr class="border-b border-border/50"><td class="py-2 pr-4">CAS variant</td><td class="py-2 px-4 text-emerald-400">Yes (separate model)</td><td class="py-2 pl-4 text-red-400">No</td></tr>
+              <tr class="border-b border-border/50"><td class="py-2 pr-4">Programming</td><td class="py-2 px-4">TI-Basic, Lua, Python</td><td class="py-2 pl-4">TI-Basic, ASM, Python (CE)</td></tr>
+              <tr class="border-b border-border/50"><td class="py-2 pr-4">Drag &amp; drop graphs</td><td class="py-2 px-4 text-emerald-400">Yes</td><td class="py-2 pl-4 text-red-400">No</td></tr>
+              <tr class="border-b border-border/50"><td class="py-2 pr-4">SAT / ACT / AP</td><td class="py-2 px-4 text-emerald-400">Yes</td><td class="py-2 pl-4 text-emerald-400">Yes</td></tr>
+              <tr><td class="py-2 pr-4">Learning curve</td><td class="py-2 px-4">Steeper</td><td class="py-2 pl-4">Gentler</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="text-xl font-semibold text-text pt-4">What does this online TI-Nspire calculator support?</h3>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong class="text-text">Scientific operations</strong> — powers, roots, reciprocals, factorials, scientific notation</li>
+          <li><strong class="text-text">Trigonometry</strong> — sin, cos, tan, inverse trig in DEG / RAD / GRAD</li>
+          <li><strong class="text-text">Logs &amp; exponentials</strong> — log, ln, 10^x, e^x</li>
+          <li><strong class="text-text">Statistics</strong> — 1-Var and 2-Var stats with regression on the STAT panel</li>
+          <li><strong class="text-text">Table mode</strong> — type f(x) and generate an x-y table just like the Nspire TABLE app</li>
+          <li><strong class="text-text">Memory STO→ / RCL</strong> — 7 variables (x, y, z, t, a, b, c)</li>
+          <li><strong class="text-text">Combinatorics</strong> — nPr, nCr accessible from the 2nd layer</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-text pt-4">Not included in the browser simulator</h3>
+        <p>The browser simulator does not include the TI-Nspire's document/page system, dynamic geometry, spreadsheet app, color graphing,
+        Python editor or the CAS symbolic engine. For symbolic algebra you need the physical Nspire CX II CAS or the TI-Nspire CX Premium
+        Teacher Software. For all the scientific/statistics workflows used in homework and SAT/AP prep, this simulator is enough.</p>
+
+        <!-- Disclaimer -->
+        <div class="bg-bg-card/50 rounded-lg border border-border p-4 mt-6 text-xs text-text-muted/70">
+          <strong>Disclaimer:</strong> Independently developed calculator simulator. Not made by, endorsed by, or affiliated with Texas Instruments Incorporated.
+          TI-Nspire, TI-Nspire CX, TI-Nspire CX II and TI-84 Plus CE are trademarks of Texas Instruments Incorporated, used here under
+          (<a href="https://en.wikipedia.org/wiki/Nominative_use" class="underline hover:text-text">nominative fair use</a>).
+        </div>
+      </div>
+    </section>
+
+    <section class="seo-section mt-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">Is there a free TI-Nspire calculator online?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">Yes. This free TI-Nspire CX simulator runs in your browser — no download. Scientific, trig, stats and table mode covered. The document system and CAS are not included in the browser version.</p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">Is this the CX, CX II or CX CAS?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">The layout follows the CX / CX II family. CAS symbolic algebra is not included in the simulator.</p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">Can I use the TI-Nspire online for the SAT or ACT?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">Only physical, College-Board-approved calculators are allowed on the actual SAT, ACT, AP or IB exam. Use this simulator for practice; bring your physical TI-Nspire on test day.</p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">TI-Nspire CX II vs TI-84 Plus — which is better for me?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">If your teacher requires the Nspire's document/page workflow or you take IB Math, choose Nspire. If your class uses the standard TI-84 keystrokes (most U.S. high schools), the <a href="/ti-84/" class="underline">TI-84 Plus</a> has a gentler learning curve.</p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">Does it work on my phone?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">Yes — responsive on iPhone, Android, iPad, Chromebook and all desktop browsers.</p>
+        </details>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

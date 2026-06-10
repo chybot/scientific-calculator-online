@@ -1,0 +1,57 @@
+---
+interface Props {
+  current?: 'en' | 'fr' | 'es';
+  /** Map of lang -> URL for the currently displayed content (sibling translations) */
+  links?: Partial<Record<'en' | 'fr' | 'es', string>>;
+}
+
+const { current = 'en', links = {} } = Astro.props;
+
+const langs = [
+  { code: 'en' as const, label: 'English',  flag: '🇬🇧', fallback: '/' },
+  { code: 'fr' as const, label: 'Français', flag: '🇫🇷', fallback: '/fr/ti-85/' },
+  { code: 'es' as const, label: 'Español',  flag: '🇪🇸', fallback: '/es/ti-30xs/' },
+];
+
+const currentLang = langs.find(l => l.code === current) ?? langs[0];
+---
+
+<div class="relative group">
+  <button
+    type="button"
+    class="flex items-center gap-1 min-h-[44px] px-2 text-sm text-text-muted hover:text-text transition-colors"
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-label="Choose language"
+    data-cta="lang:open"
+  >
+    <span aria-hidden="true">🌐</span>
+    <span class="font-medium">{current.toUpperCase()}</span>
+    <span class="text-[10px] opacity-70">▾</span>
+  </button>
+  <div
+    role="menu"
+    class="absolute right-0 top-full mt-1 bg-bg-card border border-border rounded-lg shadow-xl py-1 min-w-44 opacity-0 invisible group-hover:opacity-100 group-hover:visible focus-within:opacity-100 focus-within:visible transition-all z-50"
+  >
+    {langs.map((l) => {
+      const isCurrent = l.code === current;
+      const href = links[l.code] ?? l.fallback;
+      return (
+        <a
+          href={href}
+          role="menuitem"
+          hreflang={l.code}
+          aria-current={isCurrent ? 'true' : undefined}
+          data-cta={`lang:${l.code}`}
+          class={`flex items-center gap-2 px-3 min-h-[44px] text-sm transition-colors ${
+            isCurrent ? 'text-primary bg-primary/10' : 'text-text-muted hover:bg-bg hover:text-text'
+          }`}
+        >
+          <span aria-hidden="true">{l.flag}</span>
+          <span>{l.label}</span>
+          {isCurrent && <span class="ml-auto text-[10px] opacity-60">✓</span>}
+        </a>
+      );
+    })}
+  </div>
+</div>

@@ -1,0 +1,68 @@
+---
+interface Props {
+  /** Slug of the current page to highlight. Use "" for / (TI-30XS) */
+  current?: string;
+  /** Language of the page rendering this hub. Affects sub-labels and "here" word. */
+  lang?: 'en' | 'fr' | 'es';
+}
+
+const { current = '', lang = 'en' } = Astro.props;
+
+type Item = {
+  slug: string;
+  href: string;
+  label: string;
+  sub: { en: string; fr: string; es: string };
+  hasFr?: boolean;
+  hasEs?: boolean;
+  ctaKey: string;
+};
+
+const items: Item[] = [
+  { slug: '',          href: '/',           label: 'TI-30XS',    sub: { en: 'scientific',  fr: 'scientifique', es: 'científica' }, hasEs: true, ctaKey: 'ti-30xs' },
+  { slug: 'ti-85',     href: '/ti-85/',     label: 'TI-85',      sub: { en: 'engineering', fr: 'ingénierie',   es: 'ingeniería' },  hasFr: true, ctaKey: 'ti-85' },
+  { slug: 'ti-84',     href: '/ti-84/',     label: 'TI-84 Plus', sub: { en: 'graphing',    fr: 'graphique',    es: 'gráfica' },     ctaKey: 'ti-84' },
+  { slug: 'ti-nspire', href: '/ti-nspire/', label: 'TI-Nspire',  sub: { en: 'color',       fr: 'couleur',      es: 'color' },       ctaKey: 'ti-nspire' },
+  { slug: 'ti-30xa',   href: '/ti-30xa/',   label: 'TI-30XA',    sub: { en: 'basic',       fr: 'basique',      es: 'básica' },      ctaKey: 'ti-30xa' },
+  { slug: 'ti-30xiis', href: '/ti-30xiis/', label: 'TI-30X IIS', sub: { en: '',            fr: '',             es: '' },            ctaKey: 'ti-30xiis' },
+];
+
+const hereWord = { en: 'here', fr: 'ici', es: 'aquí' }[lang];
+
+function localizedHref(item: Item): string {
+  if (lang === 'fr' && item.hasFr) return `/fr/${item.slug || 'ti-30xs'}/`.replace('/fr//', '/fr/').replace('//', '/');
+  if (lang === 'es' && item.hasEs) return item.slug === '' ? '/es/ti-30xs/' : item.href;
+  return item.href;
+}
+
+function showsEnglishBadge(item: Item): boolean {
+  if (lang === 'en') return false;
+  if (lang === 'fr') return !item.hasFr;
+  if (lang === 'es') return !item.hasEs;
+  return false;
+}
+---
+
+<nav class="mb-6 -mx-2 px-2 overflow-x-auto" aria-label="Choose your calculator">
+  <div class="flex gap-2 min-w-max md:justify-center">
+    {items.map((item) => {
+      const isCurrent = item.slug === current;
+      const cls = isCurrent
+        ? 'bg-primary/15 text-primary border-primary/40'
+        : 'bg-bg-card text-text-muted border-border hover:border-primary/40 hover:text-text transition';
+      const sub = item.sub[lang];
+      const href = localizedHref(item);
+      const enBadge = showsEnglishBadge(item);
+      return (
+        <a href={href} data-cta={`hub:${item.ctaKey}`}
+           aria-current={isCurrent ? 'page' : undefined}
+           class={`px-3 min-h-[44px] inline-flex items-center rounded-full text-xs font-medium border whitespace-nowrap ${cls}`}>
+          {item.label}
+          {isCurrent && <span class="opacity-60 ml-1">· {hereWord}</span>}
+          {!isCurrent && sub && <span class="opacity-60 ml-1">· {sub}</span>}
+          {enBadge && <span class="ml-1.5 px-1 py-px text-[9px] bg-bg/60 border border-border rounded font-mono">EN</span>}
+        </a>
+      );
+    })}
+  </div>
+</nav>

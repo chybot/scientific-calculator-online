@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Free Online Calculators — All TI Scientific Calculator Simulators';
+const description = 'Free online TI calculator simulators: TI-30XS MultiView, TI-85, TI-84 Plus, TI-Nspire CX, TI-30XA, TI-30X IIS. No download — works on desktop and mobile.';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Online TI Calculator Simulators',
+    description: 'Browse our collection of free online scientific calculator simulators.',
+    url: 'https://scientificcalc.org/calculators/',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://scientificcalc.org/' },
+      { '@type': 'ListItem', position: 2, name: 'Calculators', item: 'https://scientificcalc.org/calculators/' },
+    ],
+  },
+];
+
+const calculatorCards = [
+  {
+    slug: '/',
+    name: 'TI-30XS MultiView',
+    description: 'Four-line scientific calculator with MathPrint natural math display. Fractions, trig, statistics, and table mode. Approved for GED, SAT, ACT.',
+    features: ['MathPrint', 'Fractions', 'Trigonometry', 'Statistics', 'Table Mode'],
+    badge: 'Most Popular',
+  },
+  {
+    slug: '/ti-85/',
+    name: 'TI-85 Calculator',
+    description: 'Advanced scientific/engineering calculator. Popular for engineering and physics courses. Scientific functions, absolute value, statistics.',
+    features: ['Engineering', 'Trigonometry', 'Logarithms', 'Statistics', 'Absolute Value'],
+    badge: 'Top Trending',
+  },
+  {
+    slug: '/ti-84/',
+    name: 'TI-84 Plus Graphing',
+    description: 'The most popular graphing calculator in U.S. high schools. Y= editor, STAT, MATRIX, MathPrint. Used for SAT, ACT, AP Calc, AP Stats.',
+    features: ['Graphing', 'Y= Editor', 'Statistics', 'Table Mode', 'SAT/AP Ready'],
+    badge: 'New',
+  },
+  {
+    slug: '/ti-nspire/',
+    name: 'TI-Nspire CX II',
+    description: 'Color graphing calculator with scientific, trig and statistics workflows. Popular for AP Calc, AP Stats and IB Math.',
+    features: ['Color Screen', 'Stats', 'IB Math', 'AP Calc'],
+    badge: 'New',
+  },
+  {
+    slug: '/ti-30xa/',
+    name: 'TI-30XA Scientific',
+    description: 'Classic single-line scientific calculator. Affordable, allowed on every U.S. standardized test. Fractions, trig, hyperbolic, statistics.',
+    features: ['Single Line', 'a b/c Fractions', 'Hyperbolic', 'Stats', 'GED Approved'],
+    badge: 'Classic',
+  },
+  {
+    slug: '/ti-30xiis/',
+    name: 'TI-30X IIS Scientific',
+    description: 'Two-line scientific calculator with EOS™ expression entry. Scroll back to edit previous expressions. Approved for SAT, ACT, GED.',
+    features: ['2-Line Display', 'EOS Entry', 'Fractions', 'Stats', 'GED Approved'],
+    badge: 'Two-Line',
+  },
+];
+---
+
+<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="text-center mb-12">
+      <h1 class="text-3xl md:text-4xl font-bold mb-3">
+        Free Online Calculator <span class="text-primary">Simulators</span>
+      </h1>
+      <p class="text-text-muted max-w-2xl mx-auto">
+        Choose from our collection of free scientific calculator simulators.
+        All calculators work in your browser — no download needed.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {calculatorCards.map((calc) => (
+        <a href={calc.slug}
+           data-cta={`card:${calc.slug}`}
+           class="block bg-bg-card rounded-xl border border-border p-6 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 group">
+          <div class="flex items-start justify-between mb-3">
+            <h2 class="text-xl font-bold group-hover:text-primary transition-colors">{calc.name}</h2>
+            {calc.badge && (
+              <span class={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                calc.badge === 'Most Popular' ? 'bg-primary/20 text-primary' :
+                calc.badge === 'Top Trending' ? 'bg-orange-500/20 text-orange-400' :
+                calc.badge === 'Classic' ? 'bg-blue-500/20 text-blue-400' :
+                calc.badge === 'Two-Line' ? 'bg-purple-500/20 text-purple-400' :
+                'bg-emerald-500/20 text-emerald-400'
+              }`}>{calc.badge}</span>
+            )}
+          </div>
+          <p class="text-sm text-text-muted mb-4">{calc.description}</p>
+          <div class="flex flex-wrap gap-2">
+            {calc.features.map((feat) => (
+              <span class="text-[11px] bg-bg px-2 py-0.5 rounded-full text-text-muted border border-border">{feat}</span>
+            ))}
+          </div>
+          <div class="mt-4 text-sm text-primary font-medium group-hover:underline">
+            Open Calculator →
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- SEO Content -->
+    <section class="mt-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-4">About Our Online Calculators</h2>
+      <div class="text-text-muted space-y-4">
+        <p>
+          Our <strong class="text-text">free online calculator simulators</strong> are designed for students
+          who need scientific calculator functions right in their browser. Each calculator provides
+          the core functions you need for math, science, and engineering coursework.
+        </p>
+        <p>
+          All calculators are <strong class="text-text">completely free</strong>, require
+          <strong class="text-text">no download</strong>, and work on any device — desktop, laptop,
+          tablet, or smartphone.
+        </p>
+
+        <div class="bg-bg-card/50 rounded-lg border border-border p-4 mt-6 text-xs text-text-muted/70">
+          <strong>Disclaimer:</strong> These are independently developed calculator simulators.
+          They are not made by, endorsed by, or affiliated with Texas Instruments Incorporated.
+          All product names are trademarks of their respective owners, used here solely for descriptive purposes
+          (<a href="https://en.wikipedia.org/wiki/Nominative_use" class="underline hover:text-text">nominative fair use</a>).
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

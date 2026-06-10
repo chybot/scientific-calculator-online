@@ -1,0 +1,203 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Calculator from '../components/calculator/Calculator';
+import CalculatorHub from '../components/CalculatorHub.astro';
+import { ti30xiis } from '../calculators/ti-30xiis';
+
+const title = 'TI-30X IIS Calculator Online Free — 2-Line Scientific Calculator Simulator';
+const description = 'Free TI-30X IIS calculator online. Two-line scientific calculator with EOS, fractions (a b/c), trig, logs, 1-Var & 2-Var statistics. Browser-based, no download.';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'SciCalc Online — TI-30X IIS Calculator Simulator',
+    description: 'Free online TI-30X IIS scientific calculator simulator with two-line display, fractions, trig, logs, and statistics.',
+    applicationCategory: 'EducationalApplication',
+    operatingSystem: 'Web Browser',
+    url: 'https://scientificcalc.org/ti-30xiis/',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    featureList: [
+      'TI-30X IIS two-line display layout',
+      'Equation Operating System (EOS™)',
+      'Fraction entry (a b/c) and decimal conversion',
+      'Trigonometric functions with DEG/RAD/GRAD modes',
+      'Logarithmic and exponential (log, ln, 10^x, e^x)',
+      'Scientific notation (EE / ENG)',
+      'Memory storage (7 variables)',
+      'Statistics: 1-Var and 2-Var',
+      'Combinatorics (nPr, nCr)',
+      'Works on mobile and desktop browsers',
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://scientificcalc.org/' },
+      { '@type': 'ListItem', position: 2, name: 'Calculators', item: 'https://scientificcalc.org/calculators/' },
+      { '@type': 'ListItem', position: 3, name: 'TI-30X IIS Calculator', item: 'https://scientificcalc.org/ti-30xiis/' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: 'Is there a free TI-30XIIS calculator online?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — this free TI-30X IIS calculator online simulates the two-line scientific calculator in your browser. Same EOS expression entry, a b/c fraction key, trig in DEG/RAD/GRAD, log/ln, statistics. No download, no install. Note: This is an independently developed simulator, not an official Texas Instruments product.' } },
+      { '@type': 'Question', name: 'What is the difference between TI-30XIIS and TI-30XS MultiView?', acceptedAnswer: { '@type': 'Answer', text: 'The TI-30X IIS shows two lines (expression on top, result below) and uses the a b/c fraction key. The TI-30XS MultiView shows up to four lines and renders fractions and exponents in natural textbook form (MathPrint). Both are scientific calculators, both run solar+battery, both are GED-approved.' } },
+      { '@type': 'Question', name: 'Is the TI-30XIIS allowed on the SAT, ACT or GED?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — the physical TI-30X IIS is approved for SAT, ACT, PSAT, AP, GED, GRE Subject Math and almost every U.S. standardized test. Bring the physical calculator to the actual test; online simulators are not permitted.' } },
+      { '@type': 'Question', name: 'Can the TI-30X IIS do fractions?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Press the a b/c key between numerator and denominator. For mixed numbers: whole → a b/c → numerator → a b/c → denominator. Press 2nd then d/c to switch between mixed and improper form.' } },
+      { '@type': 'Question', name: 'Does the TI-30X IIS do statistics?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The TI-30X IIS supports 1-variable (mean, σ, sx, Σx) and 2-variable statistics including linear regression.' } },
+      { '@type': 'Question', name: 'Does this TI-30XIIS online calculator work on my phone?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — the simulator is fully responsive on iPhone, Android, iPad, Chromebook and all desktop browsers. Add to home screen for one-tap access.' } },
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <CalculatorHub current="ti-30xiis" />
+
+    <nav class="text-xs text-text-muted mb-4" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-text">Home</a>
+      <span class="mx-1.5 opacity-50">/</span>
+      <a href="/calculators/" class="hover:text-text">Calculators</a>
+      <span class="mx-1.5 opacity-50">/</span>
+      <span class="text-text">TI-30X IIS</span>
+    </nav>
+
+    <div class="text-center mb-8">
+      <h1 class="text-3xl md:text-4xl font-bold mb-3">
+        TI-30X IIS Calculator Online <span class="text-primary">Free</span>
+      </h1>
+      <p class="text-text-muted max-w-2xl mx-auto">
+        Free TI-30X IIS two-line scientific calculator online. EOS™ expression entry, fractions, trig, logs and 2-Var stats — right in your browser.
+      </p>
+      <p class="text-[10px] text-text-muted/50 mt-2 italic">
+        Not affiliated with Texas Instruments. Independently developed simulator.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div class="lg:col-span-2 xl:col-span-3 flex justify-center">
+        <Calculator client:load model={ti30xiis} />
+      </div>
+
+      <aside class="space-y-6">
+        <div class="bg-bg-card rounded-xl border border-border p-5">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-text-muted mb-3">TI-30X IIS Features</h3>
+          <ul class="text-sm text-text-muted space-y-2">
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> 2-line display (expr + result)</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> EOS™ algebraic entry</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Fraction key (a b/c)</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> DEG / RAD / GRAD modes</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Trig + inverse trig</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> log / ln / 10^x / e^x</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Scientific notation (EE)</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> 1-Var &amp; 2-Var Statistics</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Memory STO / RCL (7 vars)</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Mobile + keyboard input</li>
+          </ul>
+        </div>
+
+        <div class="bg-bg-card rounded-xl border border-border p-5">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-text-muted mb-3">Other Calculators</h3>
+          <ul class="text-sm text-text-muted space-y-2">
+            <li><a href="/" data-cta="sidebar:ti-30xs" class="text-primary hover:underline">TI-30XS MultiView</a></li>
+            <li><a href="/ti-30xa/" data-cta="sidebar:ti-30xa" class="text-primary hover:underline">TI-30XA</a></li>
+            <li><a href="/ti-85/" data-cta="sidebar:ti-85" class="text-primary hover:underline">TI-85 Calculator</a></li>
+            <li><a href="/ti-84/" data-cta="sidebar:ti-84" class="text-primary hover:underline">TI-84 Plus</a></li>
+            <li><a href="/calculators/" data-cta="sidebar:all" class="text-primary hover:underline">View All</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <section class="seo-section mt-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-4">Free TI-30X IIS Scientific Calculator Online</h2>
+      <div class="text-text-muted space-y-4">
+        <p>
+          The <strong class="text-text">TI-30X IIS</strong> is one of the most widely used scientific calculators in U.S. classrooms — a
+          <strong class="text-text">two-line display</strong> model that shows the expression you typed and the result at the same time.
+          This free online TI-30XIIS calculator simulator gives you the same EOS™ expression-entry behavior in your browser.
+        </p>
+
+        <h3 class="text-xl font-semibold text-text pt-4">TI-30X IIS vs TI-30XA vs TI-30XS MultiView</h3>
+        <div class="overflow-x-auto mt-2">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="border-b border-border">
+                <th class="text-left py-2 pr-4 text-text">Feature</th>
+                <th class="text-left py-2 px-4 text-text">TI-30XA</th>
+                <th class="text-left py-2 px-4 text-text">TI-30X IIS</th>
+                <th class="text-left py-2 pl-4 text-text">TI-30XS MV</th>
+              </tr>
+            </thead>
+            <tbody class="text-text-muted">
+              <tr class="border-b border-border/50"><td class="py-2 pr-4">Display lines</td><td class="py-2 px-4">1</td><td class="py-2 px-4">2</td><td class="py-2 pl-4">4</td></tr>
+              <tr class="border-b border-border/50"><td class="py-2 pr-4">Edit previous expression</td><td class="py-2 px-4 text-red-400">No</td><td class="py-2 px-4 text-emerald-400">Yes</td><td class="py-2 pl-4 text-emerald-400">Yes</td></tr>
+              <tr class="border-b border-border/50"><td class="py-2 pr-4">Natural math display</td><td class="py-2 px-4 text-red-400">No</td><td class="py-2 px-4 text-red-400">No</td><td class="py-2 pl-4 text-emerald-400">Yes</td></tr>
+              <tr class="border-b border-border/50"><td class="py-2 pr-4">Fraction entry</td><td class="py-2 px-4">a b/c</td><td class="py-2 px-4">a b/c</td><td class="py-2 pl-4">n/d</td></tr>
+              <tr class="border-b border-border/50"><td class="py-2 pr-4">GED / SAT / ACT</td><td class="py-2 px-4 text-emerald-400">Yes</td><td class="py-2 px-4 text-emerald-400">Yes</td><td class="py-2 pl-4 text-emerald-400">Yes</td></tr>
+              <tr><td class="py-2 pr-4">Typical price</td><td class="py-2 px-4">~$10-15</td><td class="py-2 px-4">~$12-18</td><td class="py-2 pl-4">~$15-20</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="text-xl font-semibold text-text pt-4">What can this TI-30XIIS online calculator do?</h3>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong class="text-text">EOS™ entry</strong> — type the whole expression on the top line, see the result on the bottom line</li>
+          <li><strong class="text-text">Scroll back &amp; edit</strong> — press ← or → to fix the previous expression instead of retyping</li>
+          <li><strong class="text-text">Fractions</strong> — a b/c entry, mixed-number / improper toggle, F↔D conversion</li>
+          <li><strong class="text-text">Trig</strong> — sin, cos, tan, sin⁻¹, cos⁻¹, tan⁻¹ in DEG / RAD / GRAD</li>
+          <li><strong class="text-text">Logs / exponentials</strong> — log, ln, 10^x, e^x</li>
+          <li><strong class="text-text">Scientific notation</strong> — EE key</li>
+          <li><strong class="text-text">Statistics</strong> — 1-Var and 2-Var stats with regression</li>
+          <li><strong class="text-text">Memory</strong> — STO / RCL up to 7 variables</li>
+          <li><strong class="text-text">Combinatorics</strong> — nPr, nCr</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-text pt-4">How to scroll back and edit on the TI-30X IIS</h3>
+        <ol class="list-decimal pl-6 space-y-1">
+          <li>After pressing ENTER, your expression stays on the top line.</li>
+          <li>Press the ← or → arrow to move the cursor into the previous expression.</li>
+          <li>Type new characters to insert, or press DEL to remove.</li>
+          <li>Press ENTER again — the new result appears below.</li>
+        </ol>
+
+        <!-- Disclaimer -->
+        <div class="bg-bg-card/50 rounded-lg border border-border p-4 mt-6 text-xs text-text-muted/70">
+          <strong>Disclaimer:</strong> Independently developed scientific calculator simulator. Not made by, endorsed by, or affiliated with Texas Instruments Incorporated.
+          TI-30X IIS, TI-30XS MultiView, EOS and MathPrint are trademarks of Texas Instruments Incorporated, used here solely under
+          (<a href="https://en.wikipedia.org/wiki/Nominative_use" class="underline hover:text-text">nominative fair use</a>).
+        </div>
+      </div>
+    </section>
+
+    <section class="seo-section mt-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">Is there a free TI-30XIIS calculator online?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">Yes. This free TI-30X IIS simulator runs in your browser with two-line EOS™ entry — no install, no sign-up.</p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">TI-30X IIS vs TI-30XS MultiView — which should I use?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">If your textbook shows stacked fractions or exponents in natural form, use the <a href="/" class="underline">TI-30XS MultiView</a>. If your class uses the two-line TI-30X IIS, stay here for the same keystroke flow.</p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">Is the TI-30XIIS allowed on the SAT, ACT or GED?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">Yes — the physical TI-30X IIS is approved on the SAT, ACT, PSAT, AP, GED, GRE Subject Math and almost every U.S. standardized test.</p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">Can the TI-30X IIS do fractions?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">Yes — press a b/c between numerator and denominator. For mixed numbers, use whole → a b/c → numerator → a b/c → denominator.</p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">Does this work on my phone?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">Yes — responsive on iPhone, Android, iPad, Chromebook and all desktop browsers.</p>
+        </details>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

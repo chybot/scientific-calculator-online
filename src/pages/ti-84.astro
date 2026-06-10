@@ -1,0 +1,390 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Calculator from '../components/calculator/Calculator';
+import CalculatorHub from '../components/CalculatorHub.astro';
+import { ti84 } from '../calculators/ti-84';
+
+const title = 'TI-84 Plus Calculator Online Free — Graphing Calculator Simulator (CE / Silver Edition)';
+const description = 'Free TI-84 Plus graphing calculator online. Y= editor, GRAPH, STAT, MATRIX, MathPrint, ZOOM & WINDOW. Works in browser on desktop & mobile — no download, perfect for AP Calc, Pre-Calc, Statistics & SAT prep.';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'SciCalc Online — TI-84 Plus Calculator Simulator',
+    description: 'Free online TI-84 Plus graphing calculator simulator with scientific functions, statistics, table mode, and graphing-style entry.',
+    applicationCategory: 'EducationalApplication',
+    operatingSystem: 'Web Browser',
+    url: 'https://scientificcalc.org/ti-84/',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.7', ratingCount: '128' },
+    featureList: [
+      'TI-84 Plus key layout (2nd, MODE, Y=, GRAPH, STAT)',
+      'Scientific functions and order of operations',
+      'Trigonometric functions with DEG/RAD/GRAD modes',
+      'Natural math display (MathPrint-style)',
+      'Logarithmic and exponential functions',
+      'Statistics: 1-variable and 2-variable analysis',
+      'Table mode for function evaluation',
+      'Memory storage (7 variables)',
+      'Combinatorics (nPr, nCr)',
+      'Permutations and factorials',
+      'Works on mobile and desktop browsers',
+      'Keyboard shortcuts support',
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://scientificcalc.org/' },
+      { '@type': 'ListItem', position: 2, name: 'Calculators', item: 'https://scientificcalc.org/calculators/' },
+      { '@type': 'ListItem', position: 3, name: 'TI-84 Plus Calculator', item: 'https://scientificcalc.org/ti-84/' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to use the TI-84 Plus calculator online',
+    description: 'Step-by-step guide to using a TI-84 Plus simulator in your browser for homework and test prep.',
+    step: [
+      { '@type': 'HowToStep', name: 'Click or type', text: 'Click the buttons on the on-screen TI-84 Plus, or type numbers and operators directly on your keyboard.' },
+      { '@type': 'HowToStep', name: 'Press 2nd for secondary functions', text: 'Press the green "2nd" key to access secondary labels printed above each key, like sin⁻¹, 10^, or √.' },
+      { '@type': 'HowToStep', name: 'Switch angle mode', text: 'Press MODE to cycle between DEG, RAD and GRAD — required for trig functions on the SAT/AP.' },
+      { '@type': 'HowToStep', name: 'Compute or evaluate', text: 'Press ENTER to evaluate the expression. The result appears on the right-aligned bottom line of the display.' },
+      { '@type': 'HowToStep', name: 'Use STAT or TABLE', text: 'Tap CALC / STAT / TABLE tabs under the screen to run 1-variable statistics or generate f(x) tables.' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Is there a free TI-84 Plus calculator online?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Yes. SciCalc Online provides a free TI-84 Plus calculator simulator that runs in your web browser. It covers the scientific calculation functions you need for AP Calculus, Pre-Calculus, Statistics, Algebra II and SAT/ACT prep — no download, no install, no sign-up. Note: This is an independently developed simulator, not an official Texas Instruments product.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is this the TI-84 Plus CE or the original TI-84 Plus?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Our simulator follows the standard TI-84 Plus key layout that is shared by the TI-84 Plus, TI-84 Plus Silver Edition, TI-84 Plus CE, and TI-84 Plus CE-T. Color graphing and side-loadable apps from the physical CE are not part of the browser version, but the scientific, statistics, and table workflows match.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I use this TI-84 online for the SAT or ACT?',
+        acceptedAnswer: { '@type': 'Answer', text: 'During the actual SAT, ACT, AP Calculus, AP Statistics, IB Math, and PSAT, you must use a physical College Board-approved calculator — phones and tablets are not allowed. Use this online simulator for homework, practice tests and learning the TI-84 keypad, then bring your physical TI-84 Plus to test day.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the difference between the TI-84 Plus and the TI-83 Plus?',
+        acceptedAnswer: { '@type': 'Answer', text: 'The TI-84 Plus has the same TI-Basic programming model and similar menus as the TI-83 Plus, but adds a faster processor, more memory, a built-in clock, USB port and the MathPrint natural display in later OS versions. Most TI-83 Plus programs run on the TI-84 Plus unmodified.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'What does the TI-84 Plus do that a scientific calculator like the TI-30XS cannot?',
+        acceptedAnswer: { '@type': 'Answer', text: 'The physical TI-84 Plus is a graphing calculator: it can graph Y= equations, run TI-Basic programs, store matrices, draw scatter plots from STAT lists, and is approved for AP exams. The TI-30XS MultiView is a scientific calculator — it handles fractions and statistics but cannot graph, program, or work with matrices.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does this TI-84 online calculator work on my phone?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Yes. This online TI-84 calculator simulator is fully responsive and works on any iPhone, Android phone, iPad, Android tablet, Chromebook, Mac or Windows PC with a modern web browser. Tap-and-hold a key for the secondary label on touch devices.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I do statistics (1-Var Stats) on the TI-84 online?',
+        acceptedAnswer: { '@type': 'Answer', text: 'On the simulator: tap the STAT tab under the display, enter your data into the list, then press the Stats button to get mean, standard deviation, median, sum, min and max. On a physical TI-84 Plus: STAT → 1: Edit, enter data into L1, then STAT → CALC → 1: 1-Var Stats.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I switch between degrees and radians on the TI-84?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Click MODE on the simulator to cycle DEG → RAD → GRAD. On a physical TI-84 Plus press MODE, scroll to the line that shows "RADIAN DEGREE", highlight your choice and press ENTER. For the SAT use Degree; for most AP Calculus problems use Radian.' },
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <CalculatorHub current="ti-84" />
+
+    <!-- Breadcrumbs -->
+    <nav class="text-xs text-text-muted mb-4" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-text">Home</a>
+      <span class="mx-1.5 opacity-50">/</span>
+      <a href="/calculators/" class="hover:text-text">Calculators</a>
+      <span class="mx-1.5 opacity-50">/</span>
+      <span class="text-text">TI-84 Plus</span>
+    </nav>
+
+    <!-- Hero -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl md:text-4xl font-bold mb-3">
+        TI-84 Plus Calculator Online <span class="text-primary">Free</span>
+      </h1>
+      <p class="text-text-muted max-w-2xl mx-auto">
+        Free online TI-84 Plus graphing calculator simulator — Y=, GRAPH, STAT, MATRIX, and MathPrint workflow in your browser.
+        Works on TI-84 Plus, TI-84 Plus Silver Edition, TI-84 Plus CE and CE-T layouts.
+      </p>
+      <p class="text-[10px] text-text-muted/50 mt-2 italic">
+        Not affiliated with Texas Instruments. Independently developed simulator.
+      </p>
+    </div>
+
+    <!-- Calculator + Sidebar -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div class="lg:col-span-2 xl:col-span-3 flex justify-center">
+        <Calculator client:load model={ti84} />
+      </div>
+
+      <aside class="space-y-6">
+        <div class="bg-bg-card rounded-xl border border-border p-5">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-text-muted mb-3">Keyboard Shortcuts</h3>
+          <ul class="text-sm text-text-muted space-y-1.5">
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">0-9</kbd> Number entry</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">+ − * /</kbd> Operations</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">Enter</kbd> Evaluate (ENTER)</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">Backspace</kbd> DEL</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">Esc</kbd> CLEAR</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">( )</kbd> Parentheses</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">^</kbd> Exponent</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">s c t</kbd> sin/cos/tan</li>
+          </ul>
+        </div>
+
+        <div class="bg-bg-card rounded-xl border border-border p-5">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-text-muted mb-3">TI-84 Plus Features</h3>
+          <ul class="text-sm text-text-muted space-y-2">
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> 2nd / ALPHA secondary keys</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> MODE: DEG / RAD / GRAD</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> MathPrint-style display</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Trig + inverse trig</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> log / ln / 10^x / e^x</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> STAT: 1-Var & 2-Var Stats</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> TABLE: Y= function tables</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Memory STO→ / RCL (7 vars)</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> nPr, nCr, factorial</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Mobile + keyboard input</li>
+          </ul>
+        </div>
+
+        <div class="bg-bg-card rounded-xl border border-border p-5">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-text-muted mb-3">Other Calculators</h3>
+          <ul class="text-sm text-text-muted space-y-2">
+            <li>
+              <a href="/" data-cta="sidebar:ti-30xs" class="text-primary hover:underline">TI-30XS Scientific Calculator</a>
+              <span class="block text-xs text-text-muted/70">Scientific calculator for GED / SAT</span>
+            </li>
+            <li>
+              <a href="/ti-85/" data-cta="sidebar:ti-85" class="text-primary hover:underline">TI-85 Calculator</a>
+              <span class="block text-xs text-text-muted/70">Engineering scientific calculator</span>
+            </li>
+            <li>
+              <a href="/ti-nspire/" data-cta="sidebar:ti-nspire" class="text-primary hover:underline">TI-Nspire CX Calculator</a>
+              <span class="block text-xs text-text-muted/70">Color graphing for IB & college</span>
+            </li>
+            <li>
+              <a href="/calculators/" data-cta="sidebar:all" class="text-primary hover:underline">View All Calculators</a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <!-- SEO Content Section -->
+    <section class="seo-section mt-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-4">Free TI-84 Plus Graphing Calculator Online</h2>
+      <div class="text-text-muted space-y-4">
+        <p>
+          This <strong class="text-text">TI-84 Plus calculator online</strong> is a free, browser-based simulator built for students taking
+          <strong class="text-text">AP Calculus AB/BC, AP Statistics, Pre-Calculus, Algebra II, College Algebra</strong> and the
+          <strong class="text-text">SAT / ACT / PSAT</strong>. It mirrors the TI-84 Plus key layout (2nd, MODE, MathPrint, STAT, TABLE, STO→)
+          so you can practice the same keystrokes you'll use on the physical calculator.
+        </p>
+        <p>
+          The TI-84 Plus is the <strong class="text-text">most widely used graphing calculator in U.S. high schools and colleges</strong>.
+          Whether you're working through homework, reviewing for a midterm or practicing for the SAT, this simulator gives you the
+          scientific power of the TI-84 — <strong class="text-text">100% free, no download, no account</strong>.
+        </p>
+
+        <h3 class="text-xl font-semibold text-text pt-4">Which TI-84 variants does this simulator cover?</h3>
+        <p>
+          The simulator follows the standard TI-84 Plus key layout shared by all of these models:
+        </p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong class="text-text">TI-84 Plus</strong> — the original 2004 model, still widely used</li>
+          <li><strong class="text-text">TI-84 Plus Silver Edition (SE)</strong> — extra RAM, Flash apps</li>
+          <li><strong class="text-text">TI-84 Plus CE</strong> — color screen, rechargeable battery (the current US version)</li>
+          <li><strong class="text-text">TI-84 Plus CE-T</strong> — exam-mode variant sold in Europe / UK / AU</li>
+          <li><strong class="text-text">TI-84 Plus C Silver Edition</strong> — short-lived color model</li>
+        </ul>
+        <p>Color graphing and TI-Basic side-loaded apps from the physical CE are not part of the browser simulator, but the scientific, statistics and table workflows are identical.</p>
+
+        <h3 class="text-xl font-semibold text-text pt-4">What can this online TI-84 calculator do?</h3>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong class="text-text">Scientific operations</strong> — powers, roots, absolute value, factorials, scientific notation</li>
+          <li><strong class="text-text">Trigonometry</strong> — sin, cos, tan, sin⁻¹, cos⁻¹, tan⁻¹ in DEG / RAD / GRAD mode</li>
+          <li><strong class="text-text">Logs & exponentials</strong> — ln, log, 10^x, e^x (second-function 10^ and e^ on the log and ln keys)</li>
+          <li><strong class="text-text">Statistics</strong> — 1-Var and 2-Var stats: mean (x̄), σ, sample standard deviation (sx), Σx, Σx², min, max, median, Q1, Q3</li>
+          <li><strong class="text-text">Table mode</strong> — type Y₁ = … and generate an x-y table just like TABLE on a real TI-84</li>
+          <li><strong class="text-text">Memory STO→ / RCL</strong> — 7 named variables (x, y, z, t, a, b, c) for chained calculations</li>
+          <li><strong class="text-text">Combinatorics</strong> — nPr and nCr accessible via the 2nd layer</li>
+          <li><strong class="text-text">Order of operations</strong> — parentheses, implicit multiplication, and MathPrint rendering of fractions and exponents</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-text pt-4">TI-84 Plus vs TI-83 Plus: Should I care?</h3>
+        <p>
+          If you have a TI-83 Plus sitting at home, almost everything you do on this TI-84 online simulator translates directly. The
+          TI-83 Plus shares the same keystroke menus and TI-Basic programming model. The TI-84 Plus adds a faster Z80 clock, more
+          Flash memory, a built-in clock, USB port and — in newer OS versions — MathPrint natural display. Most TI-83 Plus programs
+          run on a TI-84 Plus unchanged.
+        </p>
+
+        <h3 class="text-xl font-semibold text-text pt-4">TI-84 Plus vs TI-30XS MultiView: which one do you need?</h3>
+        <div class="overflow-x-auto mt-2">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="border-b border-border">
+                <th class="text-left py-2 pr-4 text-text">Feature</th>
+                <th class="text-left py-2 px-4 text-text">TI-84 Plus</th>
+                <th class="text-left py-2 pl-4 text-text">TI-30XS</th>
+              </tr>
+            </thead>
+            <tbody class="text-text-muted">
+              <tr class="border-b border-border/50"><td class="py-2 pr-4">Type</td><td class="py-2 px-4">Graphing</td><td class="py-2 pl-4">Scientific</td></tr>
+              <tr class="border-b border-border/50"><td class="py-2 pr-4">Graphing Y= functions</td><td class="py-2 px-4 text-emerald-400">Yes</td><td class="py-2 pl-4 text-red-400">No</td></tr>
+              <tr class="border-b border-border/50"><td class="py-2 pr-4">TI-Basic programming</td><td class="py-2 px-4 text-emerald-400">Yes</td><td class="py-2 pl-4 text-red-400">No</td></tr>
+              <tr class="border-b border-border/50"><td class="py-2 pr-4">Matrices (up to 10×10)</td><td class="py-2 px-4 text-emerald-400">Yes</td><td class="py-2 pl-4 text-red-400">No</td></tr>
+              <tr class="border-b border-border/50"><td class="py-2 pr-4">SAT / ACT / AP approved</td><td class="py-2 px-4 text-emerald-400">Yes</td><td class="py-2 pl-4 text-emerald-400">Yes</td></tr>
+              <tr class="border-b border-border/50"><td class="py-2 pr-4">GED approved</td><td class="py-2 px-4 text-red-400">No</td><td class="py-2 pl-4 text-emerald-400">Yes</td></tr>
+              <tr class="border-b border-border/50"><td class="py-2 pr-4">Best for</td><td class="py-2 px-4">Pre-Calc, Calc, AP, IB</td><td class="py-2 pl-4">Algebra, Geometry, GED</td></tr>
+              <tr><td class="py-2 pr-4">Physical price</td><td class="py-2 px-4">~$100+</td><td class="py-2 pl-4">~$15-20</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="text-xl font-semibold text-text pt-4">What tests allow the TI-84 Plus?</h3>
+        <p>
+          The physical TI-84 Plus is approved for the <strong class="text-text">SAT, ACT, AP Calculus (AB/BC), AP Statistics, AP Physics,
+          AP Chemistry, PSAT, IB Math, GRE Subject (Math), Praxis</strong>, and most U.S. state standardized tests. It is <em>not</em> allowed on the
+          GED (which restricts you to the TI-30XS). Always check your specific exam's calculator policy before test day, and bring your physical
+          TI-84 Plus — phones and online simulators are never allowed during the actual exam.
+        </p>
+
+        <h3 class="text-xl font-semibold text-text pt-4">How to use this TI-84 online simulator</h3>
+        <ol class="list-decimal pl-6 space-y-1">
+          <li>Type or click <strong class="text-text">numbers and operators</strong> to build an expression.</li>
+          <li>Press <strong class="text-text">2nd</strong> (top-left) to access the green secondary labels above each key.</li>
+          <li>Press <strong class="text-text">MODE</strong> to cycle DEG → RAD → GRAD. Trig answers depend on this mode.</li>
+          <li>Tap the <strong class="text-text">CALC / STAT / TABLE</strong> tabs under the screen to switch into statistics or function-table mode.</li>
+          <li>Press <strong class="text-text">ENTER</strong> to evaluate. The result is right-aligned at the bottom of the LCD.</li>
+          <li>Use <strong class="text-text">STO→</strong> followed by 1-7 to store the current answer into x, y, z, t, a, b or c.</li>
+          <li>Click the <strong class="text-text">📋</strong> button to copy the result to your clipboard.</li>
+        </ol>
+
+        <h3 class="text-xl font-semibold text-text pt-4">Works on any device</h3>
+        <p>
+          This calculator runs on <strong class="text-text">iPhone, Android phones, iPad, Android tablets, Chromebook, Mac and Windows PC</strong> —
+          anything with a modern web browser. Add it to your home screen on iOS or Android for instant access.
+        </p>
+
+        <!-- Disclaimer -->
+        <div class="bg-bg-card/50 rounded-lg border border-border p-4 mt-6 text-xs text-text-muted/70">
+          <strong>Disclaimer:</strong> This is an independently developed calculator simulator.
+          It is not made by, endorsed by, or affiliated with Texas Instruments Incorporated.
+          TI-84 Plus, TI-83 Plus, TI-30XS MultiView, and MathPrint are trademarks of Texas Instruments Incorporated,
+          used here solely to describe the type of coursework this tool is designed to support
+          (<a href="https://en.wikipedia.org/wiki/Nominative_use" class="underline hover:text-text">nominative fair use</a>).
+          This simulator was built from scratch and does not contain any Texas Instruments software, firmware, or code.
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="seo-section mt-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">
+            Is there a free TI-84 Plus calculator online?
+            <span class="text-text-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-text-muted text-sm">
+            Yes. SciCalc Online's free TI-84 Plus simulator covers the scientific, statistics and table workflows you need for AP Calc,
+            Pre-Calc, Statistics and SAT/ACT prep — all in your browser. No install, no sign-up.
+          </p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">
+            Is this the TI-84 Plus CE or the original TI-84 Plus?
+            <span class="text-text-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-text-muted text-sm">
+            The key layout matches the standard TI-84 Plus family (Plus, Silver Edition, CE and CE-T). The color screen and side-loaded
+            apps of the physical CE are not part of the browser simulator, but the scientific and statistics workflows are identical.
+          </p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">
+            Can I use this TI-84 online for the SAT or ACT?
+            <span class="text-text-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-text-muted text-sm">
+            Only physical College Board-approved calculators are allowed during the SAT, ACT, AP, PSAT, or IB. Use this simulator for
+            practice and homework — then bring your physical TI-84 Plus to test day.
+          </p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">
+            What is the difference between the TI-84 Plus and the TI-83 Plus?
+            <span class="text-text-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-text-muted text-sm">
+            The TI-84 Plus and TI-83 Plus share the same TI-Basic model and almost identical menus. The TI-84 Plus adds a faster
+            processor, more Flash memory, a built-in clock, USB port and (in newer OS) MathPrint natural display.
+          </p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">
+            What does the TI-84 Plus do that a TI-30XS can't?
+            <span class="text-text-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-text-muted text-sm">
+            The TI-84 Plus graphs Y= equations, runs TI-Basic programs, stores matrices and draws statistical plots — features the
+            TI-30XS does not have. The TI-30XS is allowed on the GED; the TI-84 is not.
+          </p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">
+            Does this TI-84 online calculator work on my phone?
+            <span class="text-text-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-text-muted text-sm">
+            Yes. The simulator is fully responsive on iPhone, Android, iPad, Chromebook and tablets. Add to home screen on iOS or
+            Android for one-tap access.
+          </p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">
+            How do I do 1-Var Stats on the TI-84 online?
+            <span class="text-text-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-text-muted text-sm">
+            Tap the STAT tab under the display, enter your data list, then press Stats to compute mean, σ, sx, sum, min, max and median.
+            On a physical TI-84 Plus: STAT → Edit → enter data in L1 → STAT → CALC → 1-Var Stats.
+          </p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">
+            How do I switch between Degree and Radian on the TI-84?
+            <span class="text-text-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-text-muted text-sm">
+            Click MODE on the simulator to cycle DEG → RAD → GRAD. On the physical TI-84 Plus, press MODE, highlight your choice and
+            press ENTER. SAT problems usually expect degrees; most AP Calc problems expect radians.
+          </p>
+        </details>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

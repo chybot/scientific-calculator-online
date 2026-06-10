@@ -4,6 +4,9 @@ import {
   calcStats1Var, generateTable, parseMathPrint,
   type CalcState, type AngleMode, type CalcMode, type StatRow, type MathPrintToken,
 } from './engine';
+import type { CalculatorModel, KeyDef } from '../../calculators/types';
+import { ti30xs as defaultModel } from '../../calculators/ti-30xs';
+import { track, trackOnce } from '../analytics/track';
 
 // ─── MathPrint Display Renderer ───
 function MathPrintExpr({ tokens }: { tokens: MathPrintToken[] }) {
@@ -62,71 +65,7 @@ function ResultDisplay({ value, state }: { value: string; state: CalcState }) {
 }
 
 // ─── Key Definitions ───
-interface KeyDef {
-  label: string;
-  secondLabel?: string;
-  action: string;
-  style: 'num' | 'op' | 'func' | 'func2' | 'enter' | 'special' | 'nav';
-}
-
-const KEYS: KeyDef[][] = [
-  [
-    { label: '2nd', action: '2nd', style: 'func2' },
-    { label: 'MODE', action: 'mode', style: 'func', secondLabel: 'QUIT' },
-    { label: 'DEL', action: 'del', style: 'func', secondLabel: 'INS' },
-    { label: '←', action: 'left', style: 'nav' },
-    { label: '→', action: 'right', style: 'nav' },
-  ],
-  [
-    { label: 'x⁻¹', action: 'x⁻¹', style: 'func', secondLabel: 'nCr' },
-    { label: 'x²', action: 'x²', style: 'func', secondLabel: 'x³' },
-    { label: '^', action: '^', style: 'func', secondLabel: 'ⁿ√' },
-    { label: '√', action: '√', style: 'func', secondLabel: '³√' },
-    { label: 'n/d', action: 'frac', style: 'func', secondLabel: 'Un/d' },
-  ],
-  [
-    { label: 'sin', action: 'sin', style: 'func', secondLabel: 'sin⁻¹' },
-    { label: 'cos', action: 'cos', style: 'func', secondLabel: 'cos⁻¹' },
-    { label: 'tan', action: 'tan', style: 'func', secondLabel: 'tan⁻¹' },
-    { label: 'log', action: 'log', style: 'func', secondLabel: '10^' },
-    { label: 'ln', action: 'ln', style: 'func', secondLabel: 'e^' },
-  ],
-  [
-    { label: 'STO→', action: 'sto', style: 'func', secondLabel: 'RCL' },
-    { label: '(', action: '(', style: 'func' },
-    { label: ')', action: ')', style: 'func' },
-    { label: 'DATA', action: 'data', style: 'func', secondLabel: 'STAT' },
-    { label: 'CLEAR', action: 'clear', style: 'special' },
-  ],
-  [
-    { label: '7', action: '7', style: 'num' },
-    { label: '8', action: '8', style: 'num' },
-    { label: '9', action: '9', style: 'num' },
-    { label: '÷', action: '÷', style: 'op' },
-    { label: '!', action: '!', style: 'op' },
-  ],
-  [
-    { label: '4', action: '4', style: 'num' },
-    { label: '5', action: '5', style: 'num' },
-    { label: '6', action: '6', style: 'num' },
-    { label: '×', action: '×', style: 'op' },
-    { label: 'π', action: 'π', style: 'func', secondLabel: 'e' },
-  ],
-  [
-    { label: '1', action: '1', style: 'num' },
-    { label: '2', action: '2', style: 'num' },
-    { label: '3', action: '3', style: 'num' },
-    { label: '−', action: '−', style: 'op' },
-    { label: '(−)', action: 'neg', style: 'func' },
-  ],
-  [
-    { label: '0', action: '0', style: 'num' },
-    { label: '.', action: '.', style: 'num' },
-    { label: 'Ans', action: 'ans', style: 'func' },
-    { label: '+', action: '+', style: 'op' },
-    { label: 'ENTER', action: 'enter', style: 'enter' },
-  ],
-];
+// KeyDef is now imported from calculators/types.ts
 
 const KEY_COLORS: Record<string, string> = {
   num: 'bg-[#3d4a6b] hover:bg-[#4d5a7b] active:bg-[#2d3a5b] text-white',
@@ -276,7 +215,13 @@ function TablePanel({ state, onUpdate }: {
 }
 
 // ─── Main Calculator ───
-export default function Calculator() {
+interface CalculatorProps {
+  model?: CalculatorModel;
+}
+
+export default function Calculator({ model }: CalculatorProps) {
+  const activeModel = model ?? defaultModel;
+  const keys = activeModel.keyLayout;
   const [state, setState] = useState<CalcState>(createInitialState);
   const [showHistory, setShowHistory] = useState(false);
 
@@ -285,6 +230,8 @@ export default function Calculator() {
   }, []);
 
   const handleKey = useCallback((action: string) => {
+    trackOnce('calc_keypress', `${activeModel.id}:first`, { model: activeModel.id, key: action });
+    track('calc_keypress', { model: activeModel.id, key: action });
     setState(prev => {
       const s = { ...prev };
 
@@ -333,7 +280,7 @@ export default function Calculator() {
         case '+': case '−': case '×': case '÷': case '^': case '%':
           s.expression += act; break;
 
-        case '(': case ')': s.expression += act; break;
+        case '(': case ')': case ',': s.expression += act; break;
 
         case 'neg': s.expression += '(−'; break;
         case 'π': s.expression += 'π'; break;
@@ -343,8 +290,12 @@ export default function Calculator() {
         case 'sin': case 'cos': case 'tan':
         case 'sin⁻¹': case 'cos⁻¹': case 'tan⁻¹':
         case 'log': case 'ln': case '10^': case 'e^':
-        case '√': case '³√':
+        case '√': case '³√': case 'abs':
           s.expression += act + '('; break;
+
+        // Actions that already include the paren (e.g. "abs(")
+        case 'abs(':
+          s.expression += 'abs('; break;
 
         // Postfix operators (append after current expression)
         case 'x²': s.expression += '²'; break;
@@ -377,6 +328,7 @@ export default function Calculator() {
         case 'mode': {
           const modes: AngleMode[] = ['DEG', 'RAD', 'GRAD'];
           s.angleMode = modes[(modes.indexOf(s.angleMode) + 1) % 3];
+          track('mode_change', { angle_mode: s.angleMode, model: activeModel.id });
           break;
         }
         case 'quit': s.calcMode = 'normal'; break;
@@ -455,7 +407,7 @@ export default function Calculator() {
     <div className="flex flex-col items-center gap-4 w-full max-w-md mx-auto">
       {/* Calculator Body */}
       <div className="w-full rounded-2xl shadow-2xl overflow-hidden border border-[#2a2a4e]"
-        style={{ background: 'linear-gradient(145deg, #1a1a2e 0%, #16213e 100%)' }}>
+        style={{ background: activeModel.bodyGradient || 'linear-gradient(145deg, #1a1a2e 0%, #16213e 100%)' }}>
 
         {/* Display */}
         <div className="p-3 pb-1">
@@ -493,11 +445,24 @@ export default function Calculator() {
             </div>
 
             {/* Result line */}
-            <div className="text-right text-lg font-bold min-h-7 leading-7">
+            <div className="text-right text-lg font-bold min-h-7 leading-7 flex items-center justify-end gap-2">
               {state.error ? (
                 <span className="text-red-800">{state.error}</span>
               ) : (
-                <ResultDisplay value={state.result || state.display[3] || ''} state={state} />
+                <>
+                  <ResultDisplay value={state.result || state.display[3] || ''} state={state} />
+                  {state.result && (
+                    <button
+                      onClick={() => {
+                        navigator.clipboard?.writeText(state.result);
+                        track('result_copy', { model: activeModel.id, value_len: state.result.length });
+                      }}
+                      aria-label="Copy result"
+                      className="text-[10px] opacity-50 hover:opacity-90 px-1 py-0.5 rounded border border-current"
+                      title="Copy result"
+                    >📋</button>
+                  )}
+                </>
               )}
             </div>
           </div>
@@ -506,7 +471,7 @@ export default function Calculator() {
         {/* Mode tabs (below display) */}
         <div className="flex gap-1 px-3 pb-1">
           {(['normal', 'stat', 'table'] as CalcMode[]).map(mode => (
-            <button key={mode} onClick={() => updateState({ calcMode: mode })}
+            <button key={mode} onClick={() => { track('mode_change', { calc_mode: mode, model: activeModel.id }); updateState({ calcMode: mode }); }}
               className={`text-[9px] px-2 py-0.5 rounded-t transition-colors ${
                 state.calcMode === mode
                   ? 'bg-[#2a6a9e] text-white'
@@ -519,7 +484,7 @@ export default function Calculator() {
 
         {/* Keypad */}
         <div className="p-2.5 pt-1">
-          {KEYS.map((row, ri) => (
+          {keys.map((row, ri) => (
             <div key={ri} className="grid grid-cols-5 gap-[5px] mb-[5px]">
               {row.map((key, ki) => (
                 <button key={ki} onClick={() => handleKey(key.action)}

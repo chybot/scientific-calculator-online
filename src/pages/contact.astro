@@ -21,10 +21,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </li>
           <li>
             <strong class="text-text">General Inquiries:</strong>
-            <span class="ml-1">contact@scientificcalc.org</span>
+            <span class="ml-1" id="contact-email" data-u="contact" data-d="scientificcalc.org">
+              <noscript>Please enable JavaScript to view our contact email.</noscript>
+            </span>
           </li>
         </ul>
       </div>
     </div>
   </div>
+
+  <script is:inline>
+    (function () {
+      var el = document.getElementById('contact-email');
+      if (!el) return;
+      var u = el.getAttribute('data-u');
+      var d = el.getAttribute('data-d');
+      var addr = u + '@' + d;
+      var a = document.createElement('a');
+      a.href = 'mailto:' + addr;
+      a.textContent = addr;
+      a.className = 'text-primary hover:underline';
+      el.innerHTML = '';
+      el.appendChild(a);
+    })();
+  </script>
 </BaseLayout>

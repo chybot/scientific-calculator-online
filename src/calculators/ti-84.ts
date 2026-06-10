@@ -1,0 +1,83 @@
+import type { CalculatorModel } from './types';
+
+export const ti84: CalculatorModel = {
+  id: 'ti-84',
+  name: 'TI-84 Calculator Online Free',
+  slug: 'ti-84',
+  description: 'Free online TI-84 Plus graphing calculator simulator with scientific functions, statistics, and table mode. No download needed.',
+  displayName: 'TI-84 Plus',
+  shortName: 'TI-84',
+  bodyGradient: 'linear-gradient(145deg, #0f1a2e 0%, #1a2440 100%)',
+  features: {
+    graphing: true,
+    matrix: true,
+    programming: true,
+    complexNumbers: true,
+    solver: false,
+  },
+  seoKeywords: [
+    'ti-84 calculator online',
+    'ti-84 calculator online free',
+    'ti 84 online calculator',
+    'ti-84 plus calculator online',
+    'graphing calculator online free',
+  ],
+  keyLayout: [
+    [
+      { label: '2nd', action: '2nd', style: 'func2' },
+      { label: 'MODE', action: 'mode', style: 'func', secondLabel: 'QUIT' },
+      { label: 'DEL', action: 'del', style: 'func', secondLabel: 'INS' },
+      { label: '←', action: 'left', style: 'nav' },
+      { label: '→', action: 'right', style: 'nav' },
+    ],
+    [
+      { label: 'x⁻¹', action: 'x⁻¹', style: 'func', secondLabel: 'nCr' },
+      { label: 'x²', action: 'x²', style: 'func', secondLabel: '√' },
+      { label: '^', action: '^', style: 'func' },
+      { label: 'LOG', action: 'log', style: 'func', secondLabel: '10^' },
+      { label: 'LN', action: 'ln', style: 'func', secondLabel: 'e^' },
+    ],
+    [
+      { label: 'SIN', action: 'sin', style: 'func', secondLabel: 'sin⁻¹' },
+      { label: 'COS', action: 'cos', style: 'func', secondLabel: 'cos⁻¹' },
+      { label: 'TAN', action: 'tan', style: 'func', secondLabel: 'tan⁻¹' },
+      { label: '(', action: '(', style: 'func' },
+      { label: ')', action: ')', style: 'func' },
+    ],
+    [
+      { label: 'STO→', action: 'sto', style: 'func', secondLabel: 'RCL' },
+      { label: ',', action: ',', style: 'func' },
+      { label: 'ABS', action: 'abs(', style: 'func' },
+      { label: 'DATA', action: 'data', style: 'func', secondLabel: 'STAT' },
+      { label: 'CLEAR', action: 'clear', style: 'special' },
+    ],
+    [
+      { label: '7', action: '7', style: 'num' },
+      { label: '8', action: '8', style: 'num' },
+      { label: '9', action: '9', style: 'num' },
+      { label: '÷', action: '÷', style: 'op' },
+      { label: '!', action: '!', style: 'op' },
+    ],
+    [
+      { label: '4', action: '4', style: 'num' },
+      { label: '5', action: '5', style: 'num' },
+      { label: '6', action: '6', style: 'num' },
+      { label: '×', action: '×', style: 'op' },
+      { label: 'π', action: 'π', style: 'func', secondLabel: 'e' },
+    ],
+    [
+      { label: '1', action: '1', style: 'num' },
+      { label: '2', action: '2', style: 'num' },
+      { label: '3', action: '3', style: 'num' },
+      { label: '−', action: '−', style: 'op' },
+      { label: '(−)', action: 'neg', style: 'func' },
+    ],
+    [
+      { label: '0', action: '0', style: 'num' },
+      { label: '.', action: '.', style: 'num' },
+      { label: 'Ans', action: 'ans', style: 'func' },
+      { label: '+', action: '+', style: 'op' },
+      { label: 'ENTER', action: 'enter', style: 'enter' },
+    ],
+  ],
+};

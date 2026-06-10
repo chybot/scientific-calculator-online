@@ -1,0 +1,83 @@
+import type { CalculatorModel } from './types';
+
+export const ti85: CalculatorModel = {
+  id: 'ti-85',
+  name: 'TI-85 Calculator Online Free',
+  slug: 'ti-85',
+  description: 'Free online TI-85 scientific calculator simulator with advanced math, complex numbers, equation solver, and matrix operations.',
+  displayName: 'TI-85',
+  shortName: 'TI-85',
+  bodyGradient: 'linear-gradient(145deg, #1a1a30 0%, #0e1a2e 100%)',
+  features: {
+    graphing: true,
+    matrix: true,
+    programming: true,
+    complexNumbers: true,
+    solver: true,
+  },
+  seoKeywords: [
+    'ti-85 calculator online',
+    'ti-85 calculator online free',
+    'ti-85 calculator app',
+    'ti 85 online',
+    'ti-85 graphing calculator online',
+  ],
+  keyLayout: [
+    [
+      { label: '2nd', action: '2nd', style: 'func2' },
+      { label: 'MODE', action: 'mode', style: 'func', secondLabel: 'QUIT' },
+      { label: 'DEL', action: 'del', style: 'func', secondLabel: 'INS' },
+      { label: '←', action: 'left', style: 'nav' },
+      { label: '→', action: 'right', style: 'nav' },
+    ],
+    [
+      { label: 'x⁻¹', action: 'x⁻¹', style: 'func', secondLabel: 'nCr' },
+      { label: 'x²', action: 'x²', style: 'func', secondLabel: 'x³' },
+      { label: '^', action: '^', style: 'func', secondLabel: 'ⁿ√' },
+      { label: '√', action: '√', style: 'func', secondLabel: '³√' },
+      { label: 'ABS', action: 'abs(', style: 'func', secondLabel: 'ANGLE' },
+    ],
+    [
+      { label: 'sin', action: 'sin', style: 'func', secondLabel: 'sin⁻¹' },
+      { label: 'cos', action: 'cos', style: 'func', secondLabel: 'cos⁻¹' },
+      { label: 'tan', action: 'tan', style: 'func', secondLabel: 'tan⁻¹' },
+      { label: 'log', action: 'log', style: 'func', secondLabel: '10^' },
+      { label: 'ln', action: 'ln', style: 'func', secondLabel: 'e^' },
+    ],
+    [
+      { label: 'STO→', action: 'sto', style: 'func', secondLabel: 'RCL' },
+      { label: '(', action: '(', style: 'func' },
+      { label: ')', action: ')', style: 'func' },
+      { label: ',', action: ',', style: 'func' },
+      { label: 'CLEAR', action: 'clear', style: 'special' },
+    ],
+    [
+      { label: '7', action: '7', style: 'num' },
+      { label: '8', action: '8', style: 'num' },
+      { label: '9', action: '9', style: 'num' },
+      { label: '÷', action: '÷', style: 'op' },
+      { label: '!', action: '!', style: 'op' },
+    ],
+    [
+      { label: '4', action: '4', style: 'num' },
+      { label: '5', action: '5', style: 'num' },
+      { label: '6', action: '6', style: 'num' },
+      { label: '×', action: '×', style: 'op' },
+      { label: 'π', action: 'π', style: 'func', secondLabel: 'e' },
+    ],
+    [
+      { label: '1', action: '1', style: 'num' },
+      { label: '2', action: '2', style: 'num' },
+      { label: '3', action: '3', style: 'num' },
+      { label: '−', action: '−', style: 'op' },
+      { label: '(−)', action: 'neg', style: 'func' },
+    ],
+    [
+      { label: '0', action: '0', style: 'num' },
+      { label: '.', action: '.', style: 'num' },
+      { label: 'Ans', action: 'ans', style: 'func' },
+      { label: '+', action: '+', style: 'op' },
+      { label: 'ENTER', action: 'enter', style: 'enter' },
+    ],
+  ],
+};

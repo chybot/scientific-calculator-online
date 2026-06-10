@@ -1,0 +1,82 @@
+---
+const ga4Id = import.meta.env.PUBLIC_GA4_ID;
+const cfToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
+const isProd = import.meta.env.PROD;
+---
+
+{ga4Id && isProd && (
+  <>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}></script>
+    <script is:inline define:vars={{ ga4Id }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ window.dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', ga4Id, {
+        anonymize_ip: true,
+        send_page_view: true,
+      });
+    </script>
+  </>
+)}
+
+{cfToken && isProd && (
+  <script
+    is:inline
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon={JSON.stringify({ token: cfToken })}
+  ></script>
+)}
+
+{isProd && (
+  <script is:inline>
+    (function () {
+      var marks = [25, 50, 75, 100];
+      var fired = {};
+      function checkScroll() {
+        var h = document.documentElement;
+        var scrolled = (h.scrollTop + window.innerHeight) / h.scrollHeight * 100;
+        marks.forEach(function (m) {
+          if (!fired[m] && scrolled >= m) {
+            fired[m] = true;
+            if (window.gtag) window.gtag('event', 'scroll_depth', { depth: m, page: location.pathname });
+            else (window.dataLayer = window.dataLayer || []).push({ event: 'scroll_depth', depth: m, page: location.pathname });
+          }
+        });
+      }
+      var t;
+      window.addEventListener('scroll', function () {
+        clearTimeout(t);
+        t = setTimeout(checkScroll, 200);
+      }, { passive: true });
+
+      document.addEventListener('click', function (e) {
+        var el = e.target.closest('a[href^="http"]');
+        if (!el) return;
+        var href = el.getAttribute('href') || '';
+        if (href.indexOf(location.host) > -1) return;
+        var ev = { url: href, page: location.pathname };
+        if (window.gtag) window.gtag('event', 'external_link', ev);
+        else (window.dataLayer = window.dataLayer || []).push({ event: 'external_link', ...ev });
+      }, true);
+
+      document.addEventListener('toggle', function (e) {
+        if (e.target.tagName !== 'DETAILS' || !e.target.open) return;
+        var summary = e.target.querySelector('summary');
+        var q = summary ? summary.textContent.trim().slice(0, 120) : '';
+        var ev = { question: q, page: location.pathname };
+        if (window.gtag) window.gtag('event', 'faq_open', ev);
+        else (window.dataLayer = window.dataLayer || []).push({ event: 'faq_open', ...ev });
+      }, true);
+
+      document.addEventListener('click', function (e) {
+        var el = e.target.closest('[data-cta]');
+        if (!el) return;
+        var ev = { label: el.dataset.cta, page: location.pathname };
+        if (window.gtag) window.gtag('event', 'cta_click', ev);
+        else (window.dataLayer = window.dataLayer || []).push({ event: 'cta_click', ...ev });
+      }, true);
+    })();
+  </script>
+)}

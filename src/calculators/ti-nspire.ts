@@ -1,0 +1,83 @@
+import type { CalculatorModel } from './types';
+
+export const tiNspire: CalculatorModel = {
+  id: 'ti-nspire',
+  name: 'TI-Nspire CX Calculator Online',
+  slug: 'ti-nspire',
+  description: 'Free online TI-Nspire CX calculator simulator with scientific functions, statistics, and table mode.',
+  displayName: 'TI-Nspire CX',
+  shortName: 'TI-Nspire',
+  bodyGradient: 'linear-gradient(145deg, #1a2030 0%, #0d1322 100%)',
+  features: {
+    graphing: true,
+    matrix: true,
+    programming: true,
+    complexNumbers: true,
+    solver: true,
+  },
+  seoKeywords: [
+    'ti-nspire calculator online',
+    'ti nspire cx online',
+    'ti-nspire cx ii calculator',
+    'ti-nspire simulator',
+    'nspire calculator online free',
+  ],
+  keyLayout: [
+    [
+      { label: '2nd', action: '2nd', style: 'func2' },
+      { label: 'menu', action: 'mode', style: 'func', secondLabel: 'QUIT' },
+      { label: 'DEL', action: 'del', style: 'func', secondLabel: 'INS' },
+      { label: '←', action: 'left', style: 'nav' },
+      { label: '→', action: 'right', style: 'nav' },
+    ],
+    [
+      { label: 'x⁻¹', action: 'x⁻¹', style: 'func', secondLabel: 'nCr' },
+      { label: 'x²', action: 'x²', style: 'func', secondLabel: 'x³' },
+      { label: '^', action: '^', style: 'func', secondLabel: 'ⁿ√' },
+      { label: '√', action: '√', style: 'func', secondLabel: '³√' },
+      { label: 'π', action: 'π', style: 'func', secondLabel: 'e' },
+    ],
+    [
+      { label: 'sin', action: 'sin', style: 'func', secondLabel: 'sin⁻¹' },
+      { label: 'cos', action: 'cos', style: 'func', secondLabel: 'cos⁻¹' },
+      { label: 'tan', action: 'tan', style: 'func', secondLabel: 'tan⁻¹' },
+      { label: 'log', action: 'log', style: 'func', secondLabel: '10^' },
+      { label: 'ln', action: 'ln', style: 'func', secondLabel: 'e^' },
+    ],
+    [
+      { label: 'sto→', action: 'sto', style: 'func', secondLabel: 'RCL' },
+      { label: '(', action: '(', style: 'func' },
+      { label: ')', action: ')', style: 'func' },
+      { label: ',', action: ',', style: 'func' },
+      { label: 'CLEAR', action: 'clear', style: 'special' },
+    ],
+    [
+      { label: '7', action: '7', style: 'num' },
+      { label: '8', action: '8', style: 'num' },
+      { label: '9', action: '9', style: 'num' },
+      { label: '÷', action: '÷', style: 'op' },
+      { label: '!', action: '!', style: 'op' },
+    ],
+    [
+      { label: '4', action: '4', style: 'num' },
+      { label: '5', action: '5', style: 'num' },
+      { label: '6', action: '6', style: 'num' },
+      { label: '×', action: '×', style: 'op' },
+      { label: 'ABS', action: 'abs(', style: 'func' },
+    ],
+    [
+      { label: '1', action: '1', style: 'num' },
+      { label: '2', action: '2', style: 'num' },
+      { label: '3', action: '3', style: 'num' },
+      { label: '−', action: '−', style: 'op' },
+      { label: '(−)', action: 'neg', style: 'func' },
+    ],
+    [
+      { label: '0', action: '0', style: 'num' },
+      { label: '.', action: '.', style: 'num' },
+      { label: 'ans', action: 'ans', style: 'func' },
+      { label: '+', action: '+', style: 'op' },
+      { label: 'enter', action: 'enter', style: 'enter' },
+    ],
+  ],
+};
