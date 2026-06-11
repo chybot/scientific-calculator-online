@@ -1,0 +1,185 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Calculator from '../../components/calculator/Calculator';
+import CalculatorHub from '../../components/CalculatorHub.astro';
+import { ti30xiis } from '../../calculators/ti-30xiis';
+
+const title = 'Calculadora TI-30X IIS en Línea Gratis — Simulador Científico (2026)';
+const description = 'Calculadora TI-30X IIS en línea gratuita. Calculadora científica de dos líneas con entrada EOS, fracciones, trigonometría, logaritmos y estadísticas. Sin descarga.';
+
+const alternates = [
+  { lang: 'en', url: 'https://scientificcalc.org/ti-30xiis/' },
+  { lang: 'fr', url: 'https://scientificcalc.org/fr/ti-30xiis/' },
+  { lang: 'es', url: 'https://scientificcalc.org/es/ti-30xiis/' },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'SciCalc Online — Simulador de Calculadora TI-30X IIS',
+    description: 'Simulador gratuito en línea de la calculadora científica TI-30X IIS con pantalla de dos líneas, fracciones, trigonometría, logaritmos y estadísticas.',
+    applicationCategory: 'EducationalApplication',
+    operatingSystem: 'Web Browser',
+    url: 'https://scientificcalc.org/es/ti-30xiis/',
+    inLanguage: 'es',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://scientificcalc.org/' },
+      { '@type': 'ListItem', position: 2, name: 'Calculadora TI-30X IIS', item: 'https://scientificcalc.org/es/ti-30xiis/' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: 'es',
+    mainEntity: [
+      { '@type': 'Question', name: '¿Existe una calculadora TI-30X IIS en línea gratis?', acceptedAnswer: { '@type': 'Answer', text: 'Sí. Este simulador gratuito de la calculadora científica de dos líneas TI-30X IIS funciona en tu navegador. Misma entrada de expresiones EOS, tecla de fracciones a b/c, trigonometría en DEG/RAD/GRAD, log/ln y estadísticas. Sin descarga, sin registro. Nota: Este es un simulador desarrollado independientemente, no un producto oficial de Texas Instruments.' } },
+      { '@type': 'Question', name: '¿Cuál es la diferencia entre la TI-30X IIS y la TI-30XS MultiView?', acceptedAnswer: { '@type': 'Answer', text: 'La TI-30X IIS muestra dos líneas (la expresión arriba y el resultado abajo) y usa la tecla de fracciones a b/c. La TI-30XS MultiView muestra hasta cuatro líneas y representa las fracciones y exponentes en formato natural de libro de texto (MathPrint). Ambas son calculadoras científicas aprobadas para el GED.' } },
+      { '@type': 'Question', name: '¿En qué exámenes está permitida la TI-30X IIS?', acceptedAnswer: { '@type': 'Answer', text: 'La TI-30X IIS física está aprobada para el SAT, ACT, PSAT, AP, GED y la mayoría de exámenes estandarizados. Lleva la calculadora física al examen real; los simuladores en línea no están permitidos durante el examen.' } },
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} jsonLd={jsonLd} lang="es" alternates={alternates}>
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <CalculatorHub current="ti-30xiis" lang="es" />
+
+    <div class="text-center mb-8">
+      <h1 class="text-3xl md:text-4xl font-bold mb-3">
+        Calculadora TI-30X IIS en Línea <span class="text-primary">Gratis</span>
+      </h1>
+      <p class="text-text-muted max-w-2xl mx-auto">
+        Simulador gratuito en línea de la calculadora científica de dos líneas TI-30X IIS. Entrada de
+        expresiones EOS, fracciones, trigonometría, logaritmos y estadísticas — directamente en tu navegador.
+      </p>
+      <p class="text-[10px] text-text-muted/50 mt-2 italic">
+        No afiliado a Texas Instruments. Simulador desarrollado independientemente.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div class="lg:col-span-2 xl:col-span-3 flex justify-center">
+        <Calculator client:load model={ti30xiis} />
+      </div>
+
+      <aside class="space-y-6">
+        <div class="bg-bg-card rounded-xl border border-border p-5">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-text-muted mb-3">Atajos de Teclado</h3>
+          <ul class="text-sm text-text-muted space-y-1.5">
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">0-9</kbd> Números</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">+ − * /</kbd> Operaciones</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">Enter</kbd> Calcular</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">Esc</kbd> Borrar todo</li>
+          </ul>
+        </div>
+
+        <div class="bg-bg-card rounded-xl border border-border p-5">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-text-muted mb-3">Funciones</h3>
+          <ul class="text-sm text-text-muted space-y-2">
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Pantalla de 2 líneas (expresión + resultado)</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Entrada algebraica EOS</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Tecla de fracciones (a b/c)</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Modos DEG / RAD / GRAD</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Trigonometría e inversas</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> log / ln / 10^x / e^x</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Notación científica (EE)</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Estadística 1-Var y 2-Var</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Memoria STO / RCL (7 variables)</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Compatible con móvil</li>
+          </ul>
+        </div>
+
+        <div class="bg-bg-card rounded-xl border border-border p-5">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-text-muted mb-3">Otras Calculadoras</h3>
+          <ul class="text-sm text-text-muted space-y-2">
+            <li><a href="/es/ti-30xs/" class="text-primary hover:underline">TI-30XS MultiView</a></li>
+            <li><a href="/es/ti-30xa/" class="text-primary hover:underline">TI-30XA</a></li>
+            <li><a href="/es/ti-84/" class="text-primary hover:underline">TI-84 Plus</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <section class="seo-section mt-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-4">Calculadora Científica TI-30X IIS en Línea Gratis</h2>
+      <div class="text-text-muted space-y-4">
+        <p>
+          ¿Buscas una <strong class="text-text">calculadora TI-30X IIS en línea</strong>? La TI-30X IIS es una de
+          las calculadoras científicas más utilizadas en las aulas — un modelo de
+          <strong class="text-text">pantalla de dos líneas</strong> que muestra a la vez la expresión que escribiste
+          y el resultado. Este simulador gratuito reproduce el mismo comportamiento de entrada de expresiones EOS
+          en tu navegador — <strong class="text-text">totalmente gratis, sin descarga</strong>.
+        </p>
+
+        <h3 class="text-xl font-semibold text-text pt-4">¿Qué puede hacer esta calculadora TI-30X IIS en línea?</h3>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong class="text-text">Entrada EOS</strong> — escribe la expresión completa en la línea superior y ve el resultado abajo</li>
+          <li><strong class="text-text">Retroceder y editar</strong> — pulsa ← o → para corregir la expresión anterior sin reescribirla</li>
+          <li><strong class="text-text">Fracciones</strong> — entrada a b/c, alternar número mixto / impropio, conversión F↔D</li>
+          <li><strong class="text-text">Trigonometría</strong> — sin, cos, tan e inversas en DEG / RAD / GRAD</li>
+          <li><strong class="text-text">Logaritmos y exponenciales</strong> — log, ln, 10^x, e^x</li>
+          <li><strong class="text-text">Notación científica</strong> — tecla EE</li>
+          <li><strong class="text-text">Estadística</strong> — análisis de 1 y 2 variables con regresión</li>
+          <li><strong class="text-text">Memoria</strong> — STO / RCL hasta 7 variables</li>
+          <li><strong class="text-text">Combinatoria</strong> — nPr y nCr</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-text pt-4">TI-30X IIS vs TI-30XA vs TI-30XS MultiView</h3>
+        <p>
+          La <strong class="text-text">TI-30XA</strong> tiene una pantalla de una línea y no permite editar la
+          expresión anterior. La <strong class="text-text">TI-30X IIS</strong> muestra dos líneas y permite
+          retroceder y editar. La <strong class="text-text">TI-30XS MultiView</strong> muestra hasta cuatro líneas
+          con formato natural (MathPrint). Las tres son calculadoras científicas aprobadas para el GED, SAT y ACT.
+          Si tu clase usa la de dos líneas, quédate aquí; si tu libro muestra fracciones apiladas, usa la
+          <a href="/es/ti-30xs/" class="underline hover:text-text">TI-30XS MultiView</a>.
+        </p>
+
+        <h3 class="text-xl font-semibold text-text pt-4">Cómo retroceder y editar en la TI-30X IIS</h3>
+        <ol class="list-decimal pl-6 space-y-1">
+          <li>Después de pulsar Enter, tu expresión permanece en la línea superior.</li>
+          <li>Pulsa la flecha ← o → para mover el cursor dentro de la expresión anterior.</li>
+          <li>Escribe nuevos caracteres para insertar, o pulsa DEL para borrar.</li>
+          <li>Pulsa Enter de nuevo — el nuevo resultado aparece abajo.</li>
+        </ol>
+
+        <h3 class="text-xl font-semibold text-text pt-4">Funciona en cualquier dispositivo</h3>
+        <p>
+          Esta calculadora funciona en <strong class="text-text">ordenadores, portátiles, tabletas y smartphones</strong>.
+          Totalmente responsive y soporta entrada táctil y de teclado.
+        </p>
+
+        <div class="bg-bg-card/50 rounded-lg border border-border p-4 mt-6 text-xs text-text-muted/70">
+          <strong>Aviso legal:</strong> Este es un simulador de calculadora científica desarrollado independientemente.
+          No está fabricado por, respaldado por, ni afiliado a Texas Instruments Incorporated.
+          TI-30X IIS, TI-30XS MultiView, EOS y MathPrint son marcas registradas de Texas Instruments Incorporated,
+          utilizadas aquí solo con fines descriptivos
+          (<a href="https://es.wikipedia.org/wiki/Uso_nominativo" class="underline hover:text-text">uso nominativo</a>).
+        </div>
+      </div>
+    </section>
+
+    <section class="seo-section mt-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Preguntas Frecuentes</h2>
+      <div class="space-y-4">
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">¿Existe una calculadora TI-30X IIS en línea gratis?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">Sí. Este simulador gratuito de TI-30X IIS funciona en tu navegador con entrada EOS de dos líneas — sin instalación, sin registro.</p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">¿Cuál es la diferencia entre la TI-30X IIS y la TI-30XS MultiView?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">La TI-30X IIS muestra dos líneas y usa la tecla de fracciones a b/c. La TI-30XS MultiView muestra hasta cuatro líneas con formato natural (MathPrint). Si tu libro muestra fracciones apiladas, usa la <a href="/es/ti-30xs/" class="underline">TI-30XS MultiView</a>.</p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">¿En qué exámenes está permitida la TI-30X IIS?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">La TI-30X IIS física está aprobada para el SAT, ACT, PSAT, AP, GED y casi todos los exámenes estandarizados. Lleva la calculadora física el día del examen.</p>
+        </details>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

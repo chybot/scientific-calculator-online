@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Calculator from '../../components/calculator/Calculator';
+import CalculatorHub from '../../components/CalculatorHub.astro';
+import { ti84 } from '../../calculators/ti-84';
+
+const title = 'Calculadora TI-84 Plus en Línea Gratis — Simulador Gráfico (2026)';
+const description = 'Calculadora gráfica TI-84 Plus en línea gratuita. Pantalla MathPrint, estadísticas, modo tabla, trigonometría. Sin descarga — ideal para AP Calc, SAT y tareas.';
+
+const alternates = [
+  { lang: 'en', url: 'https://scientificcalc.org/ti-84/' },
+  { lang: 'fr', url: 'https://scientificcalc.org/fr/ti-84/' },
+  { lang: 'es', url: 'https://scientificcalc.org/es/ti-84/' },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'SciCalc Online — Simulador de Calculadora TI-84 Plus',
+    description: 'Simulador gratuito en línea de la calculadora gráfica TI-84 Plus con funciones científicas, estadísticas, modo tabla y pantalla natural.',
+    applicationCategory: 'EducationalApplication',
+    operatingSystem: 'Web Browser',
+    url: 'https://scientificcalc.org/es/ti-84/',
+    inLanguage: 'es',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://scientificcalc.org/' },
+      { '@type': 'ListItem', position: 2, name: 'Calculadora TI-84 Plus', item: 'https://scientificcalc.org/es/ti-84/' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: 'es',
+    mainEntity: [
+      { '@type': 'Question', name: '¿Existe una calculadora TI-84 Plus en línea gratis?', acceptedAnswer: { '@type': 'Answer', text: 'Sí. SciCalc Online ofrece un simulador gratuito de la calculadora gráfica TI-84 Plus que funciona en tu navegador. Cubre las funciones científicas, estadísticas y de tabla que necesitas para cálculo, precálculo, estadística y la preparación del SAT — sin descarga, sin registro. Nota: Este es un simulador desarrollado independientemente, no un producto oficial de Texas Instruments.' } },
+      { '@type': 'Question', name: '¿Puedo usar esta TI-84 en línea para el SAT o el ACT?', acceptedAnswer: { '@type': 'Answer', text: 'Durante el SAT, ACT, AP o PSAT reales solo se permiten calculadoras físicas aprobadas — los teléfonos y simuladores en línea no están permitidos. Usa este simulador para tareas y práctica, y lleva tu TI-84 Plus física el día del examen.' } },
+      { '@type': 'Question', name: '¿Es esta la TI-84 Plus CE o la TI-84 Plus original?', acceptedAnswer: { '@type': 'Answer', text: 'El simulador sigue la disposición de teclas estándar compartida por la TI-84 Plus, la Silver Edition, la CE y la CE-T. Los gráficos a color y las aplicaciones de la CE física no forman parte de la versión de navegador, pero los flujos científicos, estadísticos y de tabla son idénticos.' } },
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} jsonLd={jsonLd} lang="es" alternates={alternates}>
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <CalculatorHub current="ti-84" lang="es" />
+
+    <div class="text-center mb-8">
+      <h1 class="text-3xl md:text-4xl font-bold mb-3">
+        Calculadora TI-84 Plus en Línea <span class="text-primary">Gratis</span>
+      </h1>
+      <p class="text-text-muted max-w-2xl mx-auto">
+        Simulador gratuito en línea de la calculadora gráfica TI-84 Plus — teclas 2nd, MODE, STAT y TABLE,
+        pantalla estilo MathPrint y estadísticas, directamente en tu navegador.
+      </p>
+      <p class="text-[10px] text-text-muted/50 mt-2 italic">
+        No afiliado a Texas Instruments. Simulador desarrollado independientemente.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div class="lg:col-span-2 xl:col-span-3 flex justify-center">
+        <Calculator client:load model={ti84} />
+      </div>
+
+      <aside class="space-y-6">
+        <div class="bg-bg-card rounded-xl border border-border p-5">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-text-muted mb-3">Atajos de Teclado</h3>
+          <ul class="text-sm text-text-muted space-y-1.5">
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">0-9</kbd> Números</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">+ − * /</kbd> Operaciones</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">Enter</kbd> Calcular</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">Esc</kbd> Borrar todo</li>
+          </ul>
+        </div>
+
+        <div class="bg-bg-card rounded-xl border border-border p-5">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-text-muted mb-3">Funciones</h3>
+          <ul class="text-sm text-text-muted space-y-2">
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Teclas secundarias 2nd / ALPHA</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> MODE: DEG / RAD / GRAD</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Pantalla estilo MathPrint</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Trigonometría e inversas</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> log / ln / 10^x / e^x</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Estadística 1-Var y 2-Var</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Modo tabla (Y=)</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Memoria STO→ / RCL (7 variables)</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Compatible con móvil</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Sin descarga</li>
+          </ul>
+        </div>
+
+        <div class="bg-bg-card rounded-xl border border-border p-5">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-text-muted mb-3">Otras Calculadoras</h3>
+          <ul class="text-sm text-text-muted space-y-2">
+            <li><a href="/es/ti-30xs/" class="text-primary hover:underline">TI-30XS MultiView</a></li>
+            <li><a href="/es/ti-85/" class="text-primary hover:underline">TI-85</a></li>
+            <li><a href="/es/ti-nspire/" class="text-primary hover:underline">TI-Nspire CX</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <section class="seo-section mt-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-4">Calculadora Gráfica TI-84 Plus en Línea Gratis</h2>
+      <div class="text-text-muted space-y-4">
+        <p>
+          Esta <strong class="text-text">calculadora TI-84 Plus en línea</strong> es un simulador gratuito basado
+          en navegador, pensado para estudiantes de <strong class="text-text">cálculo, precálculo, álgebra II y
+          estadística</strong>, así como para la preparación del <strong class="text-text">SAT / ACT / PSAT</strong>.
+          Reproduce la disposición de teclas de la TI-84 Plus (2nd, MODE, MathPrint, STAT, TABLE, STO→) para que
+          practiques las mismas pulsaciones que usarás en la calculadora física.
+        </p>
+        <p>
+          La TI-84 Plus es la <strong class="text-text">calculadora gráfica más utilizada en institutos y
+          universidades</strong>. Ya sea para hacer tareas, repasar para un examen o practicar para el SAT,
+          este simulador te brinda la potencia científica de la TI-84 —
+          <strong class="text-text">100% gratis, sin descarga, sin cuenta</strong>.
+        </p>
+
+        <h3 class="text-xl font-semibold text-text pt-4">¿Qué puede hacer esta calculadora TI-84 en línea?</h3>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong class="text-text">Operaciones científicas</strong> — potencias, raíces, valor absoluto, factoriales, notación científica</li>
+          <li><strong class="text-text">Trigonometría</strong> — sin, cos, tan e inversas en modo DEG / RAD / GRAD</li>
+          <li><strong class="text-text">Logaritmos y exponenciales</strong> — ln, log, 10^x, e^x</li>
+          <li><strong class="text-text">Estadística</strong> — análisis de 1 y 2 variables: media, σ, sx, Σx, mín, máx, mediana</li>
+          <li><strong class="text-text">Modo tabla</strong> — escribe Y₁ = … y genera una tabla x-y como en la TI-84 real</li>
+          <li><strong class="text-text">Memoria STO→ / RCL</strong> — 7 variables (x, y, z, t, a, b, c) para cálculos encadenados</li>
+          <li><strong class="text-text">Combinatoria</strong> — nPr y nCr desde la capa 2nd</li>
+          <li><strong class="text-text">Orden de operaciones</strong> — paréntesis, multiplicación implícita y fracciones en formato natural</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-text pt-4">¿Qué variantes de la TI-84 cubre este simulador?</h3>
+        <p>
+          El simulador sigue la disposición de teclas estándar compartida por la <strong class="text-text">TI-84 Plus</strong>,
+          la <strong class="text-text">TI-84 Plus Silver Edition</strong>, la <strong class="text-text">TI-84 Plus CE</strong>
+          (pantalla a color, la versión actual) y la <strong class="text-text">TI-84 Plus CE-T</strong> vendida en Europa.
+          Los gráficos a color y las aplicaciones descargables de la CE física no forman parte del simulador de navegador,
+          pero los flujos científicos, estadísticos y de tabla son idénticos.
+        </p>
+
+        <h3 class="text-xl font-semibold text-text pt-4">¿En qué exámenes se permite la TI-84 Plus?</h3>
+        <p>
+          La TI-84 Plus física está aprobada para el <strong class="text-text">SAT, ACT, AP Calculus, AP Statistics,
+          PSAT e IB Math</strong>, entre otros. No está permitida en el GED (que se limita a la TI-30XS). Comprueba
+          siempre la política de calculadoras de tu examen y lleva tu calculadora física el día de la prueba — los
+          teléfonos y simuladores en línea nunca se permiten durante el examen real.
+        </p>
+
+        <h3 class="text-xl font-semibold text-text pt-4">Funciona en cualquier dispositivo</h3>
+        <p>
+          Esta calculadora funciona en <strong class="text-text">ordenadores, portátiles, tabletas y smartphones</strong>.
+          Totalmente responsive y soporta entrada táctil y de teclado.
+        </p>
+
+        <div class="bg-bg-card/50 rounded-lg border border-border p-4 mt-6 text-xs text-text-muted/70">
+          <strong>Aviso legal:</strong> Este es un simulador de calculadora desarrollado independientemente.
+          No está fabricado por, respaldado por, ni afiliado a Texas Instruments Incorporated.
+          TI-84 Plus, TI-83 Plus, TI-30XS MultiView y MathPrint son marcas registradas de Texas Instruments Incorporated,
+          utilizadas aquí solo con fines descriptivos
+          (<a href="https://es.wikipedia.org/wiki/Uso_nominativo" class="underline hover:text-text">uso nominativo</a>).
+        </div>
+      </div>
+    </section>
+
+    <section class="seo-section mt-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Preguntas Frecuentes</h2>
+      <div class="space-y-4">
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">¿Existe una calculadora TI-84 Plus en línea gratis?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">Sí. Este simulador gratuito de TI-84 Plus cubre los flujos científicos, estadísticos y de tabla que necesitas para cálculo, precálculo, estadística y la preparación del SAT — todo en tu navegador, sin descarga.</p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">¿Puedo usar esta TI-84 en línea para el SAT o el ACT?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">Durante el examen real solo se permiten calculadoras físicas aprobadas. Usa este simulador para práctica y tareas, y lleva tu TI-84 Plus física el día del examen.</p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">¿Es esta la TI-84 Plus CE o la TI-84 Plus original?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">La disposición de teclas corresponde a la familia TI-84 Plus estándar (Plus, Silver Edition, CE y CE-T). La pantalla a color y las aplicaciones de la CE física no se incluyen, pero los flujos científicos y estadísticos son idénticos.</p>
+        </details>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

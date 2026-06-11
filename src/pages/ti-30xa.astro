@@ -77,7 +77,11 @@ const jsonLd = [
 ];
 ---
 
-<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+<BaseLayout title={title} description={description} jsonLd={jsonLd} alternates={[
+  { lang: 'en', url: 'https://scientificcalc.org/ti-30xa/' },
+  { lang: 'fr', url: 'https://scientificcalc.org/fr/ti-30xa/' },
+  { lang: 'es', url: 'https://scientificcalc.org/es/ti-30xa/' },
+]}>
   <div class="max-w-6xl mx-auto px-4 py-8">
     <CalculatorHub current="ti-30xa" />
 

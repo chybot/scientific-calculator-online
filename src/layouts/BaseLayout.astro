@@ -90,8 +90,22 @@ const t = uiStrings[switcherLang];
 
 // Calculator nav items; model pages with a localized version link to it
 const localizedPages: Partial<Record<LangCode, Record<string, string>>> = {
-  fr: { '/ti-85/': '/fr/ti-85/' },
-  es: { '/': '/es/ti-30xs/' },
+  fr: {
+    '/': '/fr/ti-30xs/',
+    '/ti-85/': '/fr/ti-85/',
+    '/ti-84/': '/fr/ti-84/',
+    '/ti-nspire/': '/fr/ti-nspire/',
+    '/ti-30xa/': '/fr/ti-30xa/',
+    '/ti-30xiis/': '/fr/ti-30xiis/',
+  },
+  es: {
+    '/': '/es/ti-30xs/',
+    '/ti-85/': '/es/ti-85/',
+    '/ti-84/': '/es/ti-84/',
+    '/ti-nspire/': '/es/ti-nspire/',
+    '/ti-30xa/': '/es/ti-30xa/',
+    '/ti-30xiis/': '/es/ti-30xiis/',
+  },
 };
 const localize = (href: string) => localizedPages[switcherLang]?.[href] ?? href;
 const calcLinks = [

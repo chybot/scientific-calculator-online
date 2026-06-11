@@ -53,7 +53,11 @@ const jsonLd = [
 ];
 ---
 
-<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+<BaseLayout title={title} description={description} jsonLd={jsonLd} alternates={[
+  { lang: 'en', url: 'https://scientificcalc.org/ti-nspire/' },
+  { lang: 'fr', url: 'https://scientificcalc.org/fr/ti-nspire/' },
+  { lang: 'es', url: 'https://scientificcalc.org/es/ti-nspire/' },
+]}>
   <div class="max-w-6xl mx-auto px-4 py-8">
     <CalculatorHub current="ti-nspire" />
 

@@ -1,0 +1,185 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Calculator from '../../components/calculator/Calculator';
+import CalculatorHub from '../../components/CalculatorHub.astro';
+import { tiNspire } from '../../calculators/ti-nspire';
+
+const title = 'Calculatrice TI-Nspire en Ligne Gratuite — Simulateur Graphique Couleur (2026)';
+const description = 'Calculatrice TI-Nspire CX II en ligne gratuite. Simulateur graphique couleur avec fonctions scientifiques, trigonométrie, statistiques, mode tableau. Sans téléchargement, sur ordinateur et mobile.';
+
+const alternates = [
+  { lang: 'en', url: 'https://scientificcalc.org/ti-nspire/' },
+  { lang: 'fr', url: 'https://scientificcalc.org/fr/ti-nspire/' },
+  { lang: 'es', url: 'https://scientificcalc.org/es/ti-nspire/' },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'SciCalc Online — Simulateur de Calculatrice TI-Nspire CX',
+    description: 'Simulateur gratuit en ligne de la calculatrice graphique couleur TI-Nspire CX II — fonctions scientifiques, trigonométrie, statistiques, mode tableau.',
+    applicationCategory: 'EducationalApplication',
+    operatingSystem: 'Web Browser',
+    url: 'https://scientificcalc.org/fr/ti-nspire/',
+    inLanguage: 'fr',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://scientificcalc.org/' },
+      { '@type': 'ListItem', position: 2, name: 'Calculatrice TI-Nspire', item: 'https://scientificcalc.org/fr/ti-nspire/' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: 'fr',
+    mainEntity: [
+      { '@type': 'Question', name: 'Existe-t-il une calculatrice TI-Nspire en ligne gratuite ?', acceptedAnswer: { '@type': 'Answer', text: "Oui. Ce simulateur gratuit de TI-Nspire CX fonctionne dans votre navigateur — sans téléchargement. Il prend en charge les fonctions scientifiques, la trigonométrie, les statistiques et le mode tableau. Remarque : ceci est un simulateur développé indépendamment, pas un produit officiel Texas Instruments, et il n'inclut pas l'environnement de documents du système TI-Nspire physique." } },
+      { '@type': 'Question', name: "S'agit-il de la TI-Nspire CX, CX II ou CX CAS ?", acceptedAnswer: { '@type': 'Answer', text: "Le simulateur suit la disposition de touches standard partagée par la TI-Nspire CX, la CX II et les versions CAS. Le moteur de calcul formel (CAS), le système de documents et le traçage graphique en couleur de la TI-Nspire physique ne sont pas inclus, mais les fonctions scientifiques et statistiques sont équivalentes pour la plupart des cours." } },
+      { '@type': 'Question', name: 'Ce simulateur fonctionne-t-il sur mon téléphone ?', acceptedAnswer: { '@type': 'Answer', text: 'Oui — le simulateur est entièrement responsive sur iPhone, Android, iPad, tablettes et tous les navigateurs de bureau.' } },
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} jsonLd={jsonLd} lang="fr" alternates={alternates}>
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <CalculatorHub current="ti-nspire" lang="fr" />
+
+    <div class="text-center mb-8">
+      <h1 class="text-3xl md:text-4xl font-bold mb-3">
+        Calculatrice TI-Nspire en Ligne <span class="text-primary">Gratuite</span>
+      </h1>
+      <p class="text-text-muted max-w-2xl mx-auto">
+        Simulateur gratuit en ligne de la calculatrice graphique couleur TI-Nspire CX II : fonctions
+        scientifiques, trigonométrie, statistiques et mode tableau — directement dans votre navigateur.
+      </p>
+      <p class="text-[10px] text-text-muted/50 mt-2 italic">
+        Non affilié à Texas Instruments. Simulateur développé indépendamment.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div class="lg:col-span-2 xl:col-span-3 flex justify-center">
+        <Calculator client:load model={tiNspire} />
+      </div>
+
+      <aside class="space-y-6">
+        <div class="bg-bg-card rounded-xl border border-border p-5">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-text-muted mb-3">Raccourcis Clavier</h3>
+          <ul class="text-sm text-text-muted space-y-1.5">
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">0-9</kbd> Chiffres</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">+ − * /</kbd> Opérations</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">Entrée</kbd> Calculer</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">Retour</kbd> Effacer</li>
+            <li><kbd class="bg-bg px-1.5 py-0.5 rounded text-xs border border-border">Échap</kbd> Tout effacer</li>
+          </ul>
+        </div>
+
+        <div class="bg-bg-card rounded-xl border border-border p-5">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-text-muted mb-3">Fonctionnalités</h3>
+          <ul class="text-sm text-text-muted space-y-2">
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Disposition de touches style CX</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Affichage mathématique naturel</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Trigonométrie (DEG / RAD / GRAD)</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> log / ln / 10^x / e^x</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Statistiques 1-Var et 2-Var</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Mode tableau de fonctions</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Mémoire STO→ / RCL (7 variables)</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Compatible mobile</li>
+            <li class="flex gap-2"><span class="check-bullet" aria-hidden="true">✓</span> Sans téléchargement</li>
+          </ul>
+        </div>
+
+        <div class="bg-bg-card rounded-xl border border-border p-5">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-text-muted mb-3">Autres Calculatrices</h3>
+          <ul class="text-sm text-text-muted space-y-2">
+            <li><a href="/fr/ti-30xs/" class="text-primary hover:underline">TI-30XS MultiView</a></li>
+            <li><a href="/fr/ti-84/" class="text-primary hover:underline">TI-84 Plus</a></li>
+            <li><a href="/fr/ti-85/" class="text-primary hover:underline">TI-85</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <section class="seo-section mt-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-4">Calculatrice TI-Nspire CX II en Ligne Gratuite</h2>
+      <div class="text-text-muted space-y-4">
+        <p>
+          Vous cherchez une <strong class="text-text">calculatrice TI-Nspire en ligne</strong> ? La
+          <strong class="text-text">TI-Nspire CX II</strong> est la calculatrice graphique couleur haut de gamme de
+          Texas Instruments — écran couleur haute résolution, système de documents et géométrie dynamique. Ce
+          simulateur gratuit apporte les fonctions scientifiques, la trigonométrie, les statistiques et le mode
+          tableau dans votre navigateur.
+        </p>
+        <p>
+          Que vous prépariez un examen ou fassiez vos devoirs de maths, ce simulateur vous permet d'étudier depuis
+          n'importe quel appareil — <strong class="text-text">complètement gratuit, sans téléchargement</strong>.
+        </p>
+
+        <h3 class="text-xl font-semibold text-text pt-4">Que peut faire cette calculatrice TI-Nspire ?</h3>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong class="text-text">Fonctions scientifiques</strong> — puissances, racines, inverses, factorielles, notation scientifique</li>
+          <li><strong class="text-text">Trigonométrie</strong> — sin, cos, tan et inverses en DEG / RAD / GRAD</li>
+          <li><strong class="text-text">Logarithmes</strong> — log, ln, 10^x et e^x</li>
+          <li><strong class="text-text">Statistiques</strong> — analyse 1-Var et 2-Var avec régression</li>
+          <li><strong class="text-text">Mode tableau</strong> — saisir f(x) et générer une table x-y comme sur la Nspire</li>
+          <li><strong class="text-text">Mémoire STO→ / RCL</strong> — 7 variables (x, y, z, t, a, b, c)</li>
+          <li><strong class="text-text">Combinatoires</strong> — Permutations (nPr) et combinaisons (nCr)</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-text pt-4">TI-Nspire CX II vs TI-84 Plus : Quelle est la différence ?</h3>
+        <p>
+          La <strong class="text-text">TI-Nspire CX II</strong> possède un écran couleur plus net, un système de
+          documents et plus de mémoire. La <strong class="text-text">TI-84 Plus</strong> a des menus plus simples et
+          une prise en main plus rapide. Différences principales :
+        </p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>La TI-Nspire propose une version CAS (calcul formel) capable de résoudre symboliquement</li>
+          <li>La TI-84 est plus répandue dans les lycées et plus simple à apprendre</li>
+          <li>Les deux couvrent les fonctions scientifiques et statistiques des cours de maths</li>
+        </ul>
+        <p>
+          À noter : le moteur CAS, le système de documents et le traçage couleur de la TI-Nspire physique ne font
+          pas partie du simulateur navigateur, mais les fonctions scientifiques et statistiques suffisent pour la
+          plupart des devoirs et révisions.
+        </p>
+
+        <h3 class="text-xl font-semibold text-text pt-4">Fonctionne sur tous les appareils</h3>
+        <p>
+          Cette calculatrice fonctionne sur <strong class="text-text">ordinateurs, ordinateurs portables, tablettes
+          et smartphones</strong>. Entièrement responsive avec support tactile et clavier.
+        </p>
+
+        <div class="bg-bg-card/50 rounded-lg border border-border p-4 mt-6 text-xs text-text-muted/70">
+          <strong>Avertissement :</strong> Ceci est un simulateur de calculatrice développé indépendamment.
+          Il n'est pas fabriqué par, approuvé par, ou affilié à Texas Instruments Incorporated.
+          TI-Nspire, TI-Nspire CX, TI-Nspire CX II et TI-84 Plus sont des marques déposées de Texas Instruments Incorporated, utilisées ici uniquement à des
+          fins descriptives (<a href="https://fr.wikipedia.org/wiki/Usage_nominatif" class="underline hover:text-text">usage nominatif</a>).
+        </div>
+      </div>
+    </section>
+
+    <section class="seo-section mt-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Questions Fréquentes</h2>
+      <div class="space-y-4">
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">Existe-t-il une calculatrice TI-Nspire en ligne gratuite ?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">Oui ! Ce simulateur gratuit de TI-Nspire CX fournit les fonctions scientifiques, la trigonométrie, les statistiques et le mode tableau — directement dans votre navigateur, sans téléchargement.</p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">S'agit-il de la TI-Nspire CX, CX II ou CX CAS ?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">La disposition suit la famille CX / CX II. Le calcul formel (CAS) et le système de documents ne sont pas inclus dans le simulateur, mais les fonctions scientifiques et statistiques sont équivalentes.</p>
+        </details>
+        <details class="bg-bg-card rounded-xl border border-border p-5 group">
+          <summary class="cursor-pointer font-medium list-none flex justify-between items-center">Fonctionne-t-il sur mon téléphone ?<span class="text-text-muted group-open:rotate-180 transition-transform">▼</span></summary>
+          <p class="mt-3 text-text-muted text-sm">Oui. Le simulateur est entièrement responsive et fonctionne sur tous les smartphones, tablettes et navigateurs de bureau modernes.</p>
+        </details>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
