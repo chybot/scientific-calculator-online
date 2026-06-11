@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Calculator from '../components/calculator/Calculator';
+import CalculatorHub from '../components/CalculatorHub.astro';
 import { ti85 } from '../calculators/ti-85';
 
 const title = 'TI-85 Calculator Online Free — Scientific & Graphing Simulator (No Download)';
@@ -94,6 +95,7 @@ const jsonLd = [
   ]}
 >
   <div class="max-w-6xl mx-auto px-4 py-8">
+    <CalculatorHub current="ti-85" />
     <!-- Hero -->
     <div class="text-center mb-8">
       <h1 class="text-3xl md:text-4xl font-bold mb-3">

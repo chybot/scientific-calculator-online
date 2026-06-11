@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Calculator from '../components/calculator/Calculator';
+import CalculatorHub from '../components/CalculatorHub.astro';
 import { ti30xa } from '../calculators/ti-30xa';
 
 const title = 'TI-30XA Calculator Online Free — Scientific Calculator Simulator (No Download)';
@@ -78,6 +79,7 @@ const jsonLd = [
 
 <BaseLayout title={title} description={description} jsonLd={jsonLd}>
   <div class="max-w-6xl mx-auto px-4 py-8">
+    <CalculatorHub current="ti-30xa" />
 
     <nav class="text-xs text-text-muted mb-4" aria-label="Breadcrumb">
       <a href="/" class="hover:text-text">Home</a>

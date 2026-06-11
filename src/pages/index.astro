@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Calculator from '../components/calculator/Calculator';
+import CalculatorHub from '../components/CalculatorHub.astro';
 
 const title = 'TI-30XS Calculator Online Free — Scientific Calculator Simulator (2026)';
 const description = 'Free TI-30XS MultiView calculator online. Natural math display, fractions, trig, statistics, table mode. Plus TI-85, TI-84, TI-Nspire & TI-30XA simulators — no download, works in browser.';
@@ -82,6 +83,7 @@ const jsonLd = [
   ]}
 >
   <div class="max-w-6xl mx-auto px-4 py-8">
+    <CalculatorHub current="" />
 
     <!-- Hero -->
     <div class="text-center mb-8">
