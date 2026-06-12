@@ -488,18 +488,18 @@ export default function Calculator({ model }: CalculatorProps) {
             <div key={ri} className="grid grid-cols-5 gap-[5px] mb-[5px]">
               {row.map((key, ki) => (
                 <button key={ki} onClick={() => handleKey(key.action)}
-                  className={`relative rounded-lg py-2 px-0.5 text-[13px] select-none
+                  className={`relative rounded-lg pt-3.5 pb-1.5 px-0.5 text-[13px] select-none
                     transition-all duration-75 shadow-sm active:shadow-none active:translate-y-px
                     focus:outline-none focus:ring-1 focus:ring-blue-400/50
                     ${KEY_COLORS[key.style]}`}
                   aria-label={key.secondLabel ? `${key.label}, second: ${key.secondLabel}` : key.label}>
                   {key.secondLabel && (
-                    <span className={`absolute -top-[3px] left-1/2 -translate-x-1/2 text-[7px] leading-none
-                      ${state.secondActive ? 'text-emerald-300 font-bold' : 'text-emerald-500/50'}`}>
+                    <span className={`absolute top-[3px] left-1/2 -translate-x-1/2 text-[9px] leading-none whitespace-nowrap
+                      ${state.secondActive ? 'text-emerald-300 font-bold' : 'text-emerald-400/80'}`}>
                       {key.secondLabel}
                     </span>
                   )}
-                  <span className={key.secondLabel ? 'mt-0.5 block' : ''}>{key.label}</span>
+                  <span className="block">{key.label}</span>
                 </button>
               ))}
             </div>
